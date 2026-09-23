@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#8fd8ff" />
+  <title>Tayyib Treats · Feed the Farm Friends</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥕</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet" />
+  <script type="module" crossorigin src="./assets/index-BuQWEQ6X.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-AcCO4VIx.css">
+</head>
+<body>
+  <canvas id="scene"></canvas>
+  <div id="tags"></div>
+  <div id="bubble" class="bubble hidden"><span id="bubbleText"></span></div>
+  <div id="popups"></div>
+
+  <!-- Always-on toggles -->
+  <div id="topbar">
+    <button id="voiceBtn" class="icon-btn" aria-label="Read aloud" title="Read aloud"></button>
+    <button id="muteBtn" class="icon-btn" aria-label="Sound" title="Sound"></button>
+  </div>
+
+  <!-- Title -->
+  <section id="screen-title" class="screen top">
+    <div class="card title-card">
+      <div class="logo">Tayyib <span>Treats</span></div>
+      <div class="tagline">Feed your farm friends good, wholesome food!</div>
+      <div class="verse">
+        <b>“Eat of what is on the earth, lawful and good.”</b>
+        <small>Quran 2:168</small>
+      </div>
+      <button class="btn big" id="titlePlay">Play ▶</button>
+      <div class="row">
+        <button class="btn alt" id="titleStickers">📒 Sticker Book</button>
+        <button class="btn soft" id="titleGrown">👪 Grown-ups</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Level map -->
+  <section id="screen-map" class="screen">
+    <div class="card map-card">
+      <h2>Who is hungry? 🌾</h2>
+      <p class="sub" id="mapSub">Tap a friend to feed them!</p>
+      <div class="map-grid" id="mapGrid"></div>
+      <div class="row">
+        <button class="btn alt" id="mapBack">◀ Home</button>
+        <button class="btn alt" id="mapStickers">📒 Stickers</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Level intro -->
+  <section id="screen-intro" class="screen dim">
+    <div class="card intro-card">
+      <div class="level-badge" id="introLevel">Level 1</div>
+      <div class="intro-head">
+        <img id="introImg" class="portrait" alt="" />
+        <div>
+          <h2 id="introTitle">Nibbles is hungry!</h2>
+          <p id="introText" class="goal"></p>
+        </div>
+      </div>
+      <div class="how">
+        <span>👆 Drag or tap food</span><span>😋 to the mouth</span><span>✅ Good food only!</span>
+      </div>
+      <div class="tip">
+        <div class="ribbon">🌙 <span id="tipTitle">Tayyib Tip</span></div>
+        <blockquote id="tipQuote"></blockquote>
+        <div class="source" id="tipSource"></div>
+        <p class="kid" id="tipKid"></p>
+        <button class="link-btn" id="tipRead">🔈 Read to me</button>
+      </div>
+      <button class="btn big" id="introGo">Bismillah! ▶</button>
+      <button class="link-btn" id="introBack">◀ Back to map</button>
+    </div>
+  </section>
+
+  <!-- HUD -->
+  <section id="hud" class="hidden">
+    <button class="icon-btn" id="pauseBtn" aria-label="Pause">⏸</button>
+    <div class="hud-center">
+      <div class="hud-name" id="hudName">Nibbles</div>
+      <div class="meter" id="meter"></div>
+    </div>
+    <div class="hand-hint" id="handHint">👆 Drag or tap good food to <span id="handName">Nibbles</span>!</div>
+  </section>
+
+  <!-- Pause -->
+  <section id="screen-pause" class="screen dim">
+    <div class="card small-card">
+      <h2>Paused</h2>
+      <button class="btn big" id="resumeBtn">Keep feeding ▶</button>
+      <div class="row">
+        <button class="btn alt" id="pauseMap">🗺️ Map</button>
+        <button class="btn alt" id="pauseHome">🏠 Home</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Result -->
+  <section id="screen-result" class="screen dim">
+    <div class="card result-card">
+      <h1 id="resTitle">Alhamdulillah!</h1>
+      <p id="resText" class="goal"></p>
+      <div id="resStars" class="stars"></div>
+      <div id="resSticker" class="new-sticker hidden">
+        <div class="sticker big-sticker"><img id="resStickerImg" alt="" /></div>
+        <div class="new-label">New sticker! 🎉</div>
+      </div>
+      <div class="earn" id="resEarn"></div>
+      <button class="btn big" id="resNext">Next friend ▶</button>
+      <div class="row">
+        <button class="btn alt" id="resAgain">🔁 Again</button>
+        <button class="btn alt" id="resMap">🗺️ Map</button>
+        <button class="btn alt" id="resStickers">📒 Stickers</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sticker book -->
+  <section id="screen-stickers" class="screen dim">
+    <div class="card book-card">
+      <h2>📒 My Farm Sticker Book</h2>
+      <p class="sub" id="bookSub"></p>
+      <div class="book-grid" id="bookGrid"></div>
+      <button class="btn big" id="bookClose">Done ✔</button>
+    </div>
+  </section>
+
+  <!-- Grown-ups -->
+  <section id="screen-grown" class="screen dim">
+    <div class="card grown-card">
+      <h2>👪 For Grown-ups</h2>
+      <p class="sub">Tayyib Treats teaches children to choose wholesome food and to be kind to animals.
+        Children drag (or tap) food to each animal. Good food fills the tummy meter; junk food gives a gentle tummy-ache and a hint.
+        There is no way to fail. Read-aloud uses your browser's built-in voice.</p>
+      <h3>Islamic content & sources</h3>
+      <ul class="sources" id="sourceList"></ul>
+      <p class="sub small">Short English meanings are simplified for children. Please check with a local scholar if unsure.</p>
+      <div class="row">
+        <button class="btn soft" id="resetBtn">Reset progress</button>
+        <button class="btn big" id="grownClose">Done ✔</button>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

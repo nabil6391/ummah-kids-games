@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#7fd3ff" />
+  <title>Noor Defenders</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏮</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet" />
+  <script type="module" crossorigin src="./assets/index-CrV9OghP.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CQM2wGIi.css">
+</head>
+<body class="theme-day">
+  <canvas id="scene"></canvas>
+  <div id="popups"></div>
+
+  <button id="muteBtn" class="icon-btn corner" aria-label="Sound on/off" title="Sound (M)">🔊</button>
+
+  <!-- Title -->
+  <section id="screen-title" class="screen">
+    <div class="card title-card">
+      <div class="logo">Noor <span>Defenders</span></div>
+      <div class="lantern-row" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <p class="tagline">The grumpy <b>Gloomies</b> want to dim the masjid's lanterns!<br>Build <b>good deeds</b> to cheer them up with light.</p>
+      <button class="btn big" id="titlePlay">Play ▶</button>
+      <div class="row">
+        <button class="btn alt" id="titleHelp">❓ How to play</button>
+        <button class="btn alt" id="titleBook">📗 Good Deeds Book</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to play -->
+  <section id="screen-help" class="screen hidden dim">
+    <div class="card help-card">
+      <div class="ribbon">❓ How to play</div>
+      <ol class="steps">
+        <li><span class="num">1</span><div><b>Pick a good deed</b> from the bar at the bottom.</div></li>
+        <li><span class="num">2</span><div><b>Tap a green tile</b> next to the path to build it there.</div></li>
+        <li><span class="num">3</span><div>Press <b>Start Wave</b>. Light from your good deeds <b>cheers up</b> the Gloomies and they float away happy!</div></li>
+        <li><span class="num">4</span><div>Cheering up Gloomies gives you <b>✨ Noor</b>. Use it to build more and to <b>upgrade</b> (tap a tower).</div></li>
+        <li><span class="num">5</span><div>If a Gloomy reaches the masjid, a <b>🏮 lantern</b> goes dim. Keep them glowing to earn <b>⭐⭐⭐</b>!</div></li>
+      </ol>
+      <p class="hint">Keys: 1–4 pick a tower · Space next wave · F speed · U upgrade · P pause · M sound</p>
+      <button class="btn big" id="helpClose">Got it! 👍</button>
+    </div>
+  </section>
+
+  <!-- Good deeds book -->
+  <section id="screen-book" class="screen hidden dim">
+    <div class="card book-card">
+      <div class="ribbon">📗 Good Deeds Book</div>
+      <h3>Good deeds (towers)</h3>
+      <div id="bookTowers" class="book-list"></div>
+      <h3>Gloomies (bad habits)</h3>
+      <div id="bookGloomies" class="book-list"></div>
+      <button class="btn big" id="bookClose">Close</button>
+    </div>
+  </section>
+
+  <!-- Level select -->
+  <section id="screen-levels" class="screen hidden dim">
+    <div class="card levels-card">
+      <div class="ribbon">🗺️ Choose a place to protect</div>
+      <div id="levelGrid" class="level-grid"></div>
+      <div class="row">
+        <button class="btn alt" id="levelsBack">◀ Back</button>
+      </div>
+      <button class="link" id="resetBtn">Reset progress</button>
+    </div>
+  </section>
+
+  <!-- HUD -->
+  <section id="hud" class="hidden">
+    <div id="hudTop" class="hud-top">
+      <button class="icon-btn" id="pauseBtn" aria-label="Pause" title="Pause (P)">⏸</button>
+      <div class="chip level-chip" id="hudLevel">Level 1</div>
+      <div class="chip lives" title="Lanterns still glowing"><span>🏮</span><b id="hudLives">10</b></div>
+      <div class="chip noor" title="Noor (light points)"><span>✨</span><b id="hudNoor">0</b></div>
+      <div class="chip wave" title="Wave"><span>🌊</span><b id="hudWave">0/8</b></div>
+      <button class="icon-btn speed" id="speedBtn" aria-label="Game speed" title="Speed (F)">1x</button>
+    </div>
+    <div id="tip" class="tip hidden">
+      <button class="tip-x" id="tipClose" aria-label="Close">✕</button>
+      <div class="tip-head" id="tipHead">💡 Did you know?</div>
+      <div class="tip-intro" id="tipIntro"></div>
+      <div class="tip-text" id="tipText"></div>
+      <div class="tip-src" id="tipSrc"></div>
+    </div>
+    <div id="coach" class="coach hidden"></div>
+    <div id="bottom" class="bottom">
+      <div class="wavebar">
+        <div class="preview" id="preview"></div>
+        <button class="btn wave-btn" id="waveBtn">▶ Start Wave</button>
+      </div>
+      <div id="infobar" class="infobar hidden"></div>
+      <div id="buildbar" class="buildbar"></div>
+      <div id="towerpanel" class="towerpanel hidden">
+        <img id="tpIcon" alt="" />
+        <div class="tp-main">
+          <div class="tp-name"><b id="tpName"></b> <span id="tpTier" class="tier"></span></div>
+          <div class="tp-stats" id="tpStats"></div>
+        </div>
+        <div class="tp-actions">
+          <button class="btn small" id="upgradeBtn">⬆ Upgrade</button>
+          <button class="btn small sell" id="sellBtn">Sell</button>
+        </div>
+        <button class="tp-x" id="tpClose" aria-label="Close">✕</button>
+      </div>
+    </div>
+    <div id="tooltip" class="tooltip hidden"></div>
+  </section>
+
+  <!-- Pause -->
+  <section id="screen-pause" class="screen hidden dim">
+    <div class="card small-card">
+      <h2>Paused</h2>
+      <button class="btn big" id="resumeBtn">Resume ▶</button>
+      <div class="col">
+        <button class="btn alt" id="restartBtn">🔁 Restart level</button>
+        <button class="btn alt" id="pauseHelp">❓ How to play</button>
+        <button class="btn alt" id="quitBtn">🗺️ Choose level</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- New gloomy intro -->
+  <section id="screen-intro" class="screen hidden dim">
+    <div class="card intro-card">
+      <div class="ribbon">👀 A new Gloomy!</div>
+      <img id="introImg" class="intro-img" alt="" />
+      <h2 id="introName"></h2>
+      <div class="habit" id="introHabit"></div>
+      <p id="introBlurb"></p>
+      <div class="quote-box">
+        <div class="q-intro" id="introQIntro"></div>
+        <blockquote id="introQuote"></blockquote>
+        <div class="source" id="introSource"></div>
+        <p class="meaning" id="introMeaning"></p>
+      </div>
+      <button class="btn big" id="introOk">Let's cheer it up! ✨</button>
+    </div>
+  </section>
+
+  <!-- Result -->
+  <section id="screen-result" class="screen hidden dim">
+    <div class="card result-card">
+      <h1 id="resTitle">MashaAllah!</h1>
+      <div id="resStars" class="stars"></div>
+      <p id="resText"></p>
+      <div class="quote-box" id="resQuoteBox">
+        <div class="q-intro" id="resQIntro"></div>
+        <blockquote id="resQuote"></blockquote>
+        <div class="source" id="resSource"></div>
+        <p class="meaning" id="resMeaning"></p>
+      </div>
+      <button class="btn big" id="resNext">Next place ▶</button>
+      <div class="row">
+        <button class="btn alt" id="resRetry">🔁 Play again</button>
+        <button class="btn alt" id="resLevels">🗺️ Levels</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="toast" class="toast hidden"></div>
+
+</body>
+</html>

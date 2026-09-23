@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#5cc8ff" />
+  <title>Eid Bazaar Math</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet" />
+  <script type="module" crossorigin src="./assets/index-BmqPaz5N.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-AZSteQFF.css">
+</head>
+<body>
+  <canvas id="scene"></canvas>
+  <div id="labels"></div>
+
+  <!-- Always-on corner buttons -->
+  <div id="topbar">
+    <button id="homeBtn" class="icon-btn hidden" aria-label="Home" title="Home">🏠</button>
+    <button id="voiceBtn" class="icon-btn" aria-label="Read aloud" title="Read aloud on/off">🗣️</button>
+    <button id="muteBtn" class="icon-btn" aria-label="Sound" title="Sound on/off">🔊</button>
+  </div>
+
+  <!-- Title -->
+  <section id="screen-title" class="screen low">
+    <div class="card title-card">
+      <div class="logo"><span class="moon">🌙</span> Eid Bazaar <span>Math</span></div>
+      <p class="tagline">Help Amina and Zaid get ready for Eid — count, add, and share!</p>
+      <button class="btn big" id="titlePlay">Story ▶</button>
+      <div class="row">
+        <button class="btn alt" id="titlePractice">🎯 Practice</button>
+        <button class="btn pink" id="titleParents">For grown-ups</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapter map -->
+  <section id="screen-map" class="screen">
+    <div class="card map-card">
+      <div class="logo small">Countdown to <span>Eid</span></div>
+      <div id="chapterGrid" class="chapter-grid"></div>
+      <div class="sticker-book">
+        <div class="sb-title">My Stickers</div>
+        <div id="stickerRow" class="sticker-row"></div>
+      </div>
+      <div class="row">
+        <button class="btn alt" id="mapPractice">🎯 Practice</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story pages -->
+  <section id="screen-story" class="screen low">
+    <div class="card story-card">
+      <div class="story-head">
+        <span id="storyIcon" class="story-icon">🌴</span>
+        <div>
+          <div id="storyCountdown" class="countdown">6 days until Eid</div>
+          <h2 id="storyTitle">The Date Farm</h2>
+        </div>
+      </div>
+      <p id="storyText" class="story-text"></p>
+      <div id="storyDots" class="page-dots"></div>
+      <div class="row story-row">
+        <button class="icon-btn" id="storySay" aria-label="Read again" title="Read again">🔊</button>
+        <button class="btn alt" id="storyBack">◀</button>
+        <button class="btn big" id="storyNext">Next ▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Playing -->
+  <section id="screen-play" class="play hidden">
+    <div class="play-top">
+      <div id="playChip" class="chip">🌴 The Date Farm</div>
+      <div id="progress" class="progress-dots"></div>
+    </div>
+    <div class="problem-card" id="problemCard">
+      <div class="prompt">
+        <p id="promptText" class="prompt-text"></p>
+        <button id="sayBtn" class="icon-btn small" aria-label="Read the question" title="Read the question">🔊</button>
+      </div>
+      <div class="equation" id="equation">
+        <span class="num ga" id="eqA">3</span><span class="op">+</span><span class="num gb" id="eqB">2</span><span class="op">=</span><span class="num ans" id="eqAns">?</span>
+      </div>
+    </div>
+    <div id="coach" class="coach">Tap each one to count!</div>
+    <div class="play-bottom" id="playBottom">
+      <div class="helpers">
+        <button class="hbtn" id="hCount"><span>👆</span><em class="long">Count with me</em><em class="short">Count</em></button>
+        <button class="hbtn" id="hLine"><span>📏</span><em class="long">Number line</em><em class="short">Line</em></button>
+        <button class="hbtn" id="hFrame"><span>🔟</span><em id="hFrameLabel">Ten frame</em></button>
+        <button class="hbtn" id="hInput"><span id="hInputIcon">🔢</span><em id="hInputLabel">Keypad</em></button>
+      </div>
+      <div id="choices" class="choices"></div>
+      <div id="pad" class="pad hidden"></div>
+      <button class="btn big next-btn hidden" id="nextBtn">Next ▶</button>
+    </div>
+    <div id="helperPanel" class="helper-panel hidden">
+      <button class="close-x" id="helperClose" aria-label="Close helper">✕</button>
+      <div id="helperBody"></div>
+    </div>
+  </section>
+
+  <!-- Chapter complete -->
+  <section id="screen-complete" class="screen dim">
+    <div class="card complete-card">
+      <h1 id="completeTitle">Chapter complete!</h1>
+      <div id="completeStars" class="stars"></div>
+      <div class="sticker-reveal"><div id="completeSticker" class="sticker big">🌴</div><div id="completeStickerName" class="sticker-name">Date Palm sticker!</div></div>
+      <div class="value-card">
+        <div id="completeKind" class="ribbon">🌙 Hadith</div>
+        <blockquote id="completeQuote"></blockquote>
+        <div class="source">— <span id="completeSource"></span></div>
+        <p id="completeMeaning" class="meaning"></p>
+      </div>
+      <div class="row">
+        <button class="icon-btn" id="completeSay" aria-label="Read again" title="Read again">🔊</button>
+        <button class="btn big" id="completeContinue">Continue ▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Practice chooser -->
+  <section id="screen-practice" class="screen">
+    <div class="card practice-card">
+      <div class="logo small">🎯 <span>Practice</span></div>
+      <p class="sub">Pick what you want to practise. No pressure — play as long as you like!</p>
+      <div id="practiceGrid" class="practice-grid"></div>
+      <p class="hint">Practice stars: <b id="practiceStars">0</b> ⭐</p>
+    </div>
+  </section>
+
+  <!-- Eid finale -->
+  <section id="screen-final" class="screen low">
+    <div class="card final-card">
+      <div class="logo">Eid <span>Mubarak!</span> 🌙</div>
+      <p class="sub">You helped Amina and Zaid get ready for Eid. You:</p>
+      <ul id="deedList" class="deeds"></ul>
+      <div id="finalStickers" class="sticker-row"></div>
+      <div class="value-card">
+        <div class="ribbon">🌙 Qur'an</div>
+        <blockquote id="finalQuote"></blockquote>
+        <div class="source">— <span id="finalSource"></span></div>
+        <p id="finalMeaning" class="meaning"></p>
+      </div>
+      <div class="row">
+        <button class="icon-btn" id="finalSay" aria-label="Read again">🔊</button>
+        <button class="btn big" id="finalMap">Back to map</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Parents -->
+  <section id="screen-parents" class="screen dim">
+    <div class="card parents-card">
+      <h2>For grown-ups</h2>
+      <p>Eid Bazaar Math practises <b>addition</b> for ages 5–8: sums to 5, to 10 and to 20, adding tens, and two-digit sums without regrouping.</p>
+      <p>Children count real objects (tap to count), then pick or type the answer. Wrong answers are never punished — the game counts together with the child and lets them try again. Helpers: “Count with me”, a number line, and a ten frame / tens-and-ones chart.</p>
+      <p>Keyboard: number keys to type, <b>Enter</b> to check / continue, <b>Backspace</b> to delete.</p>
+      <p class="hint">Progress is saved on this device only.</p>
+      <div class="row">
+        <button class="btn pink" id="resetBtn">Reset progress</button>
+        <button class="btn" id="parentsBack">Back</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="toast" class="toast hidden"></div>
+</body>
+</html>
