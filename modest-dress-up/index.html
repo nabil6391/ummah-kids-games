@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#ffc2de" />
+  <title>Modest Style Studio — Dress up with Amina</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧕</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <script type="module" crossorigin src="./assets/index-B5tEDvA-.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-Baj_-duV.css">
+</head>
+<body>
+  <canvas id="scene"></canvas>
+  <div id="flash"></div>
+  <div id="toast" class="hidden"></div>
+
+  <!-- Always-visible corner: stars + sound -->
+  <div id="corner">
+    <div class="pill" id="starPill" title="Stars earned in challenges"><span>⭐</span><b id="starCount">0</b><small id="starMax">/21</small></div>
+    <button id="muteBtn" class="icon-btn" aria-label="Sound on/off">🔊</button>
+  </div>
+
+  <!-- Title -->
+  <section id="screen-title" class="screen title-screen">
+    <div class="card title-card">
+      <div class="logo">Modest <span>Style</span> Studio</div>
+      <div class="tagline">Dress up with Amina 🧕✨</div>
+      <div class="menu">
+        <button class="btn big" id="goChallenges">⭐ Challenges</button>
+        <button class="btn big pink" id="goStudio">🎨 Design Studio</button>
+        <div class="row">
+          <button class="btn alt" id="goLookbook">📖 Lookbook</button>
+          <button class="btn alt" id="goSettings">⚙️ Settings</button>
+        </div>
+      </div>
+      <div class="reminder small">
+        <blockquote id="hayaText"></blockquote>
+        <div class="source" id="hayaSource"></div>
+      </div>
+    </div>
+    <div class="char-zone" id="zone-title"></div>
+  </section>
+
+  <!-- Challenge picker -->
+  <section id="screen-challenges" class="screen hidden dim">
+    <div class="card list-card">
+      <div class="ribbon">⭐ Style Challenges</div>
+      <p class="sub">Pick an occasion and dress Amina for it. Earn stars to unlock new clothes!</p>
+      <div class="challenge-grid" id="challengeGrid"></div>
+      <button class="btn alt" id="challengesBack">◀ Back</button>
+    </div>
+  </section>
+
+  <!-- Dresser (used by challenges and the free Design Studio) -->
+  <section id="screen-dresser" class="screen hidden dresser">
+    <header class="d-top">
+      <button class="icon-btn" id="homeBtn" aria-label="Home">🏠</button>
+      <div class="d-title"><span id="dTitleEmoji">🎨</span> <b id="dTitle">Design Studio</b></div>
+      <button class="icon-btn small-only" id="briefBtn" aria-label="Show the brief">💬</button>
+    </header>
+    <div class="chips" id="goalChips"></div>
+    <aside class="panel wardrobe" id="wardrobe">
+      <div class="tabs" id="tabs"></div>
+      <div class="note hidden" id="tabNote"></div>
+      <div class="items" id="items"></div>
+      <div class="custom" id="custom">
+        <div class="crow" id="row1"><span class="clabel">Colour</span><div class="swatches" id="sw1"></div></div>
+        <div class="crow" id="row2"><span class="clabel">Trim</span><div class="swatches" id="sw2"></div></div>
+        <div class="crow" id="row3"><span class="clabel">Pattern</span><div class="swatches" id="pats"></div></div>
+      </div>
+    </aside>
+    <div class="char-zone" id="zone-dresser"><div class="drag-hint" id="dragHint">👆 Drag to spin Amina</div></div>
+    <aside class="panel side" id="side">
+      <div id="sideBrief"></div>
+    </aside>
+    <nav class="actions" id="actions">
+      <button class="act" id="undoBtn" title="Undo"><span>↶</span><small>Undo</small></button>
+      <button class="act" id="resetBtn" title="Reset"><span>🧺</span><small>Reset</small></button>
+      <button class="act" id="surpriseBtn" title="Surprise me"><span>🎲</span><small>Surprise</small></button>
+      <button class="act" id="photoBtn" title="Snap a photo"><span>📸</span><small>Photo</small></button>
+      <button class="act" id="saveBtn" title="Save to Lookbook"><span>💖</span><small>Save</small></button>
+      <button class="act done hidden" id="doneBtn" title="I'm ready!"><span>✔</span><small>Ready!</small></button>
+    </nav>
+  </section>
+
+  <!-- Challenge result -->
+  <section id="screen-result" class="screen hidden dim">
+    <div class="card result-card">
+      <div class="ribbon" id="resRibbon">Eid Morning</div>
+      <h1 id="resTitle">Masha'Allah!</h1>
+      <div class="stars" id="resStars"></div>
+      <ul class="goal-list" id="resGoals"></ul>
+      <div class="reminder">
+        <div class="rem-head">🌙 A little reminder</div>
+        <blockquote id="resQuote"></blockquote>
+        <div class="source" id="resSource"></div>
+        <p class="meaning" id="resMeaning"></p>
+      </div>
+      <div id="resUnlocks" class="unlocks hidden"></div>
+      <div class="row">
+        <button class="btn" id="resNext">Next challenge ▶</button>
+        <button class="btn alt" id="resKeep">Keep styling</button>
+      </div>
+      <div class="row">
+        <button class="btn alt small" id="resPhoto">📸 Photo</button>
+        <button class="btn alt small" id="resSave">💖 Save look</button>
+        <button class="btn alt small" id="resMenu">🏠 Menu</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lookbook -->
+  <section id="screen-lookbook" class="screen hidden dim">
+    <div class="card list-card">
+      <div class="ribbon">📖 My Lookbook</div>
+      <p class="sub">Outfits you saved. Tap <b>Wear</b> to put one on again.</p>
+      <div class="look-grid" id="lookGrid"></div>
+      <p class="empty hidden" id="lookEmpty">No looks yet! Tap 💖 <b>Save</b> while dressing Amina to keep a look here.</p>
+      <button class="btn alt" id="lookbookBack">◀ Back</button>
+    </div>
+  </section>
+
+  <!-- Settings -->
+  <section id="screen-settings" class="screen hidden dim">
+    <div class="card settings-card">
+      <div class="ribbon">⚙️ Settings</div>
+      <h3>Face style</h3>
+      <p class="sub">Some families prefer characters without faces — choose what suits your family.</p>
+      <div class="seg" id="faceSeg">
+        <button data-face="cute">😊 Cute face</button>
+        <button data-face="simple">🙂 Simple face</button>
+        <button data-face="none">⚪ No face</button>
+      </div>
+      <h3>Sound effects</h3>
+      <div class="seg" id="soundSeg">
+        <button data-sound="on">🔊 On</button>
+        <button data-sound="off">🔇 Off</button>
+      </div>
+      <h3>Grown-ups</h3>
+      <button class="btn danger small" id="resetProgress">Reset stars &amp; lookbook</button>
+      <div class="row"><button class="btn big" id="settingsBack">Done ✔</button></div>
+    </div>
+  </section>
+
+</body>
+</html>

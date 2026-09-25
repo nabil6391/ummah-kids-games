@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#7cc6ff" />
+  <title>Hajj Journey — a family board game</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛺</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Noto+Naskh+Arabic:wght@500;700&display=swap" rel="stylesheet" />
+  <script type="module" crossorigin src="./assets/index-BgqCka-Z.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-ChqZw7Tw.css">
+</head>
+<body>
+  <canvas id="scene"></canvas>
+  <div id="moon" aria-hidden="true"></div>
+  <div id="popups"></div>
+  <div id="toasts"></div>
+
+  <!-- Top bar -->
+  <div id="topbar">
+    <button id="guideBtn" class="icon-btn" aria-label="Hajj Guide" title="Hajj Guide">📖</button>
+    <button id="mapBtn" class="icon-btn hidden" aria-label="Map view" title="Whole map">🗺️</button>
+    <button id="voiceBtn" class="icon-btn" aria-label="Read aloud" title="Read aloud">🗣️</button>
+    <button id="muteBtn" class="icon-btn" aria-label="Sound" title="Sound">🔊</button>
+    <button id="menuBtn" class="icon-btn hidden" aria-label="Menu" title="Menu">☰</button>
+  </div>
+
+  <!-- In-game HUD -->
+  <section id="hud" class="hidden">
+    <div class="hud-left">
+      <div id="dayChip" class="day-chip"><span id="dayText">Arriving for Hajj</span><small id="placeText">Miqat</small></div>
+      <div id="playersBar" class="players-bar"></div>
+    </div>
+    <div id="turnPanel" class="turn-panel">
+      <div id="turnName" class="turn-name">Your turn!</div>
+      <div id="turnSub" class="turn-sub"></div>
+      <button id="rollBtn" class="btn big roll">🎲 Roll</button>
+    </div>
+  </section>
+
+  <!-- Title -->
+  <section id="screen-title" class="screen">
+    <div class="card title-card">
+      <div class="logo">Hajj <span>Journey</span></div>
+      <p class="tagline">A family board game about the Hajj 🤍</p>
+      <div class="stations-strip" id="titleStrip"></div>
+      <button class="btn big hidden" id="continueBtn">▶ Continue journey</button>
+      <button class="btn big" id="newBtn">✨ New journey</button>
+      <div class="row">
+        <button class="btn alt" id="titleGuide">📖 Hajj Guide</button>
+        <button class="btn alt" id="titleAbout">ℹ️ For parents</button>
+      </div>
+      <p class="hint">1–4 players · take turns on one device · ages 6–12</p>
+    </div>
+  </section>
+
+  <!-- Setup -->
+  <section id="screen-setup" class="screen dim">
+    <div class="card setup-card">
+      <div class="ribbon">Who is going on the journey?</div>
+      <div class="count-row" id="countRow"></div>
+      <div id="seats" class="seats"></div>
+      <p class="sub small">Tap 🧑 / 🤖 to switch a pilgrim between a person and a friendly computer pilgrim.</p>
+      <div class="row">
+        <button class="btn alt" id="setupBack">◀ Back</button>
+        <button class="btn big" id="setupGo">Let's go ▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section id="screen-intro" class="screen dim">
+    <div class="card intro-card">
+      <div class="ribbon">Bismillah — the journey begins!</div>
+      <blockquote id="introVerse"></blockquote>
+      <div class="source" id="introVerseSrc"></div>
+      <div class="explain"><b id="typesTitle"></b><p id="typesText"></p></div>
+      <div class="howto">
+        <b>How to play</b>
+        <ul>
+          <li>🎲 Roll the die and walk along the road.</li>
+          <li>🟡 Gold spaces are <b>stations</b> of Hajj. You always stop at the next station and do its activity — in order!</li>
+          <li>⭐ Green = good deed (move ahead) · ❓ Blue = quiz · 😅 Orange = oops!</li>
+          <li>🤝 It's not a race — everyone completes every station and earns a certificate.</li>
+        </ul>
+      </div>
+      <div class="row">
+        <button class="btn icon-inline" id="introSpeak">🔊</button>
+        <button class="btn big" id="introGo">Start ▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Station intro -->
+  <section id="screen-station" class="screen dim">
+    <div class="card station-card">
+      <div class="ribbon" id="stRibbon">Station 1 of 13</div>
+      <div class="st-day" id="stDay"></div>
+      <h1 id="stTitle"></h1>
+      <div class="st-player" id="stPlayer"></div>
+      <p class="st-intro" id="stIntro"></p>
+      <div class="row">
+        <button class="btn icon-inline" id="stSpeak" aria-label="Read aloud">🔊</button>
+        <button class="btn big" id="stGo">Let's do it ▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Activity -->
+  <section id="screen-activity" class="screen dim act-screen">
+    <div class="card act-card">
+      <div class="act-head">
+        <div class="ribbon" id="actTitle"></div>
+        <div class="counter" id="actCounter"></div>
+      </div>
+      <p class="act-hint" id="actHint"></p>
+      <div class="act-stage" id="actStage"></div>
+      <div class="act-story hidden" id="actStory"></div>
+      <div class="act-msg" id="actMsg"></div>
+      <div class="act-buttons" id="actButtons"></div>
+    </div>
+  </section>
+
+  <!-- Learned -->
+  <section id="screen-learned" class="screen dim">
+    <div class="card learned-card">
+      <div class="ribbon gold">📖 New page in your Hajj Guide!</div>
+      <h2 id="lrTitle"></h2>
+      <ul id="lrFacts" class="facts"></ul>
+      <blockquote id="lrQuote" class="small-quote"></blockquote>
+      <div class="source" id="lrSource"></div>
+      <div class="row">
+        <button class="btn icon-inline" id="lrSpeak">🔊</button>
+        <button class="btn big" id="lrGo">Continue ▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Space card (good deed / oops) -->
+  <section id="screen-space" class="screen dim">
+    <div class="card small-card space-card" id="spCard">
+      <div class="big-ico" id="spIcon"></div>
+      <div class="ribbon" id="spRibbon"></div>
+      <p class="sp-text" id="spText"></p>
+      <p class="sp-tip" id="spTip"></p>
+      <div class="sp-effect" id="spEffect"></div>
+      <button class="btn big" id="spGo">OK ▶</button>
+    </div>
+  </section>
+
+  <!-- Quiz -->
+  <section id="screen-quiz" class="screen dim">
+    <div class="card quiz-card">
+      <div class="ribbon blue">❓ Quiz card</div>
+      <div class="st-player" id="qzPlayer"></div>
+      <h2 id="qzQuestion"></h2>
+      <div id="qzOptions" class="options"></div>
+      <div id="qzFeedback" class="feedback hidden"></div>
+      <div class="row">
+        <button class="btn icon-inline" id="qzSpeak">🔊</button>
+        <button class="btn big hidden" id="qzGo">Continue ▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI summary -->
+  <section id="screen-ai" class="screen dim">
+    <div class="card small-card ai-card">
+      <div class="big-ico" id="aiIcon"></div>
+      <div class="ribbon" id="aiRibbon"></div>
+      <p id="aiText" class="sp-text"></p>
+      <button class="btn" id="aiGo">OK ▶</button>
+    </div>
+  </section>
+
+  <!-- Hajj Guide book -->
+  <section id="screen-guide" class="screen dim">
+    <div class="card guide-card">
+      <div class="guide-head">
+        <div class="ribbon gold">📖 My Hajj Guide</div>
+        <span id="guideCount" class="guide-count"></span>
+      </div>
+      <div class="guide-body">
+        <div id="guideTabs" class="guide-tabs"></div>
+        <div id="guidePage" class="guide-page"></div>
+      </div>
+      <div class="row">
+        <button class="btn icon-inline" id="guideSpeak">🔊</button>
+        <button class="btn big" id="guideClose">Close ✔</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Player finished -->
+  <section id="screen-finish" class="screen dim">
+    <div class="card finish-card">
+      <h1 id="fnTitle">Journey complete!</h1>
+      <p id="fnText"></p>
+      <img id="fnCert" class="cert-img" alt="Certificate" />
+      <div class="row">
+        <button class="btn alt" id="fnDownload">⬇️ Download certificate</button>
+        <button class="btn big" id="fnGo">Continue ▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- End -->
+  <section id="screen-end" class="screen dim">
+    <div class="card end-card">
+      <h1>Hajj Journey complete! 🎉</h1>
+      <blockquote id="endQuote" class="small-quote"></blockquote>
+      <div class="source" id="endSource"></div>
+      <div id="endList" class="end-list"></div>
+      <div class="row">
+        <button class="btn alt" id="endGuide">📖 Hajj Guide</button>
+        <button class="btn big" id="endHome">🏠 Home</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu -->
+  <section id="screen-menu" class="screen dim">
+    <div class="card small-card">
+      <h2>Menu</h2>
+      <button class="btn big" id="menuResume">▶ Keep playing</button>
+      <button class="btn alt" id="menuHome">🏠 Save & go home</button>
+      <button class="btn alt danger" id="menuRestart">↺ Start a new journey</button>
+    </div>
+  </section>
+
+  <!-- About / parents -->
+  <section id="screen-about" class="screen dim">
+    <div class="card about-card">
+      <div class="ribbon">For parents & teachers</div>
+      <div id="aboutBody" class="about-body"></div>
+      <button class="btn big" id="aboutClose">Close ✔</button>
+    </div>
+  </section>
+
+</body>
+</html>
