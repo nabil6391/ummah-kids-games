@@ -4,7 +4,7 @@
 set -euo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd)"
 SRC="$(dirname "$HERE")"
-GAMES=(noor-defenders tayyib-treats eid-bazaar-math strong-believer eid-sweets-bakery hajj-journey modest-dress-up sadaqah-siblings)
+GAMES=(noor-defenders tayyib-treats eid-bazaar-math strong-believer eid-sweets-bakery hajj-journey modest-dress-up sadaqah-siblings moonlight-observatory)
 for g in "${GAMES[@]}"; do
   echo "== building $g"
   (cd "$SRC/$g" && [ -d node_modules ] || npm install --no-audit --no-fund)

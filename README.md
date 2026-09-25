@@ -16,6 +16,7 @@ lives in its own folder next to this one in `~/StudioProjects/games/`:
 | Hajj Journey | `/hajj-journey/` | `hajj-journey` |
 | Modest Style Studio | `/modest-dress-up/` | `modest-dress-up` |
 | Sadaqah Siblings | `/sadaqah-siblings/` | `sadaqah-siblings` |
+| Moonlight Observatory | `/moonlight-observatory/` | `moonlight-observatory` |
 | Last Light | `/last-light/` | `last-light` (Defold release bundle) |
 
 ## Update the site
