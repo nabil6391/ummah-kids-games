@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <link rel="icon" href="data:," />
+  <title>Muslim Detective · Family Deen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" />
+  <script type="module" crossorigin src="./assets/index-xB-mjaQK.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CpQpejpn.css">
+</head>
+<body>
+  <canvas id="scene"></canvas>
+  <div id="paper"></div>
+  <div id="tags"></div>
+
+  <div id="hud" class="hidden">
+    <div class="casepill" id="casePill"></div>
+    <button class="round" id="bookBtn" aria-label="Casebook"><span>📒</span><em id="bookCount">0</em></button>
+    <div class="topright">
+      <button class="sq" id="muteBtn" aria-label="Sound">🔊</button>
+      <button class="sq" id="homeBtn" aria-label="Case board">🏠</button>
+    </div>
+    <div class="hintbar" id="hint"></div>
+  </div>
+
+  <section id="dialog" class="hidden">
+    <img id="dlgFace" alt="" />
+    <div class="ribbon" id="dlgName"></div>
+    <p id="dlgText"></p>
+    <span class="next">tap ▸</span>
+  </section>
+
+  <div id="layer"></div>
+  <div id="toast" class="hidden"></div>
+
+<script src="../site-extras.js" defer></script>
+</body>
+</html>

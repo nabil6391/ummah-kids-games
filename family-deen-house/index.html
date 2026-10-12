@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <link rel="icon" href="data:," />
+  <title>House of Knowledge · Family Deen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Amiri:wght@700&display=swap" />
+  <script type="module" crossorigin src="./assets/main-D4FDtJDC.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/scroll-U0OfgBbK.js">
+  <link rel="stylesheet" crossorigin href="./assets/scroll-Cf9BbB5b.css">
+</head>
+<body>
+  <canvas id="scene"></canvas>
+  <div id="paper"></div>
+  <div id="loading">Opening the House of Knowledge…</div>
+
+  <!-- hub HUD -->
+  <div id="hubHud" class="hud hidden">
+    <div class="ribbon title-rib">🔐 House of Knowledge</div>
+    <div class="top-right">
+      <div class="pill" id="talkPill" title="Conversations had">💬 <b id="talkCount">0</b><small>talks</small></div>
+      <button class="pill" id="bookBtn" title="The Book of Knowledge">📖 <b id="pageCount">0/6</b><small>pages</small></button>
+      <button class="sq" id="muteBtn" aria-label="Sound">🔈</button>
+      <button class="sq" id="helpBtn" aria-label="How to play">?</button>
+    </div>
+    <div id="wingBar"></div>
+  </div>
+
+  <!-- room HUD -->
+  <div id="roomHud" class="hud hidden">
+    <button class="sq back" id="backBtn" aria-label="Back to the house">⬅</button>
+    <div class="ribbon room-rib" id="roomTitle">Room</div>
+    <div class="top-right">
+      <div class="pill">💬 <b id="talkCount2">0</b></div>
+      <button class="sq" id="muteBtn2" aria-label="Sound">🔈</button>
+    </div>
+    <div id="taskPill"></div>
+    <button id="parentBtn" aria-label="Hold to open the Parent's Scroll">
+      <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" id="holdRing" /></svg>
+      <span class="ic">📜</span><span class="lab">Hold for<br>Parent's Scroll</span>
+    </button>
+    <div id="lockBar">
+      <div class="lock-ic">🔒</div>
+      <div id="slots"></div>
+      <button class="chunky gold" id="tryBtn" disabled>Try the lock 🔑</button>
+    </div>
+  </div>
+  <div id="nameTag" class="hidden"></div>
+
+  <!-- title -->
+  <section id="titleScreen" class="screen clear hidden">
+    <div class="card title-card">
+      <div class="brand">Family Deen</div>
+      <h1><span>House of</span> Knowledge</h1>
+      <p class="sub">A cooperative escape room for a child and a grown-up.<br>The Book of Knowledge has lost its pages — find them together!</p>
+      <button class="chunky" id="startBtn">Enter the House</button>
+      <button class="chunky ghost" id="howBtn">👤 Grown-ups: how it works</button>
+    </div>
+  </section>
+
+  <section id="howtoScreen" class="screen hidden">
+    <div class="card parent-card">
+      <div class="for">👤 For Baba / Mama</div>
+      <h2>How House of Knowledge works</h2>
+      <ul id="howList" class="how"></ul>
+      <button class="chunky" id="howClose">Let's go!</button>
+    </div>
+  </section>
+
+  <section id="wingScreen" class="screen hidden">
+    <div class="card wing-card">
+      <div class="ribbon" id="wingTitle">Wing</div>
+      <p id="wingBlurb" class="sub"></p>
+      <div id="roomList"></div>
+      <button class="chunky ghost" id="wingClose">Back</button>
+    </div>
+  </section>
+
+  <section id="introScreen" class="screen hidden">
+    <div class="card intro-card">
+      <div class="ribbon" id="introTitle">Room</div>
+      <p id="introText" class="story"></p>
+      <div class="stopbox">
+        <div class="stop-h">🛑 Stop &amp; look</div>
+        <p id="lookText"></p>
+        <div class="eyes">🧒 👀 ➜ 🗣️ ➜ 👤</div>
+      </div>
+      <p class="note">Grown-up: your clues are in the <b>Parent's Scroll</b> — hold the teal 📜 button.</p>
+      <div class="row"><button class="chunky" id="introTalked">✔ We talked — start!</button><button class="chunky ghost" id="introSkip">Start</button></div>
+    </div>
+  </section>
+
+  <section id="lookAway" class="screen solid hidden">
+    <div class="look-card">
+      <div class="monkey">🙈</div>
+      <h2>Child, look away!</h2>
+      <p>This is the grown-up's secret scroll. Cover your eyes or hand the device over.</p>
+      <button class="chunky teal" id="iAmGrownUp">👤 I'm the grown-up — open the scroll</button>
+      <button class="chunky ghost" id="lookCancel">Cancel</button>
+    </div>
+  </section>
+
+  <section id="scrollScreen" class="screen solid hidden">
+    <div class="parent-scroll">
+      <div id="scrollBody"></div>
+      <button class="chunky teal" id="scrollClose">Close scroll &amp; hand back 🔒</button>
+    </div>
+  </section>
+
+  <section id="tryScreen" class="screen hidden">
+    <div class="card try-card">
+      <div class="big">🔒 <span id="tryCount"></span></div>
+      <h2 id="tryHead">The lock clicked… but didn't open yet.</h2>
+      <div class="stopbox">
+        <div class="stop-h">🛑 Stop &amp; talk</div>
+        <p>Child: tell Baba or Mama what you put in each hole.<br>Grown-up: check the scroll together — there's an extra clue now.</p>
+      </div>
+      <div class="row"><button class="chunky" id="tryTalked">✔ We talked — try again</button></div>
+    </div>
+  </section>
+
+  <section id="pageScreen" class="screen hidden">
+    <div class="card page-card">
+      <div class="ribbon gold-rib">📜 A page came back!</div>
+      <div id="pageSpread" class="spread"></div>
+      <button class="chunky" id="pageNext">Talk about it ➜</button>
+    </div>
+  </section>
+
+  <section id="talkScreen" class="screen hidden">
+    <div class="card talk-card">
+      <div class="ribbon">🗣️ Talk about it</div>
+      <div class="talk-row parent-side"><div class="who">👤 Baba / Mama asks</div><p id="talkParent"></p><button class="talked" data-t="p">✔ We talked</button></div>
+      <div class="talk-row child-side"><div class="who">🧒 Child asks</div><p id="talkChild"></p><button class="talked" data-t="c">✔ We talked</button></div>
+      <div class="talk-row apply"><div class="who">🌱 Try this today</div><p id="talkApply"></p></div>
+      <label class="notes">✏️ What did your child say? (saved in the Book)<textarea id="talkNote" rows="2" placeholder="Optional note…"></textarea></label>
+      <div class="row"><button class="chunky ghost" id="talkHome">Back to the House</button><button class="chunky" id="talkNextRoom">Next room ➜</button></div>
+    </div>
+  </section>
+
+  <section id="bookScreen" class="screen hidden">
+    <div class="card book-card">
+      <div class="ribbon gold-rib">📖 The Book of Knowledge</div>
+      <p class="sub" id="bookSummary"></p>
+      <div class="book-nav"><button class="sq" id="bookPrev">◀</button><div id="bookSpread" class="spread"></div><button class="sq" id="bookNext">▶</button></div>
+      <div id="bookDots"></div>
+      <button class="chunky" id="bookClose">Close the Book</button>
+    </div>
+  </section>
+
+  <section id="finaleScreen" class="screen hidden">
+    <div class="card intro-card">
+      <div class="ribbon gold-rib">🎉 Six pages restored!</div>
+      <p class="story">MashaAllah! Together you brought back every page that's open so far. The Civilisation, Arabic and Akhlaq Garden wings are still locked… in sha Allah, more pages are waiting.</p>
+      <div class="stopbox"><div class="stop-h">🛑 One last talk</div><p>Which page was your favourite, and what will you remember tomorrow?</p></div>
+      <button class="chunky" id="finaleClose">✔ We talked — back to the House</button>
+    </div>
+  </section>
+
+<script src="../site-extras.js" defer></script>
+</body>
+</html>

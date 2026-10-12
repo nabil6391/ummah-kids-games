@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#ffd9a0" />
+  <title>Iftar Grove</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌴</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet" />
+  <script type="module" crossorigin src="./assets/index-D5V_QZqJ.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DyaPWlTi.css">
+</head>
+<body>
+  <canvas id="scene"></canvas>
+  <div id="popups"></div>
+
+  <div id="topbar">
+    <div class="pill hidden" id="coinPill"><i class="coin"></i><b id="coinNum">0</b></div>
+    <div class="pill hidden" id="servePill">🧺 <b id="serveNum">0</b></div>
+    <div class="spacer"></div>
+    <button id="pauseBtn" class="icon-btn hidden" aria-label="Pause">⏸</button>
+    <button id="muteBtn" class="icon-btn" aria-label="Sound">🔊</button>
+  </div>
+  <div id="objective" class="hidden"></div>
+
+  <section id="title" class="screen">
+    <div class="card">
+      <div class="logo">Iftar <span>Grove</span></div>
+      <p class="tag">Pack dates and water, then share them before iftar.</p>
+      <div class="ribbon">Who are you?</div>
+      <div class="row">
+        <button class="choice on" id="pickBoy" type="button">Karim</button>
+        <button class="choice" id="pickGirl" type="button">Salma</button>
+      </div>
+      <ol class="steps">
+        <li>Walk to a palm and pick dates.</li>
+        <li>Fill a jug at the well.</li>
+        <li>Stand on the rug to pack a basket.</li>
+        <li>Share it with a neighbor who is waiting.</li>
+      </ol>
+      <button class="btn big" id="playBtn" type="button">Play ▶</button>
+      <p class="keys">Move: WASD or arrow keys · Pause: P</p>
+      <p class="quote hadith"></p>
+      <p class="source hadith-src"></p>
+    </div>
+  </section>
+
+  <section id="pause" class="screen dim hidden">
+    <div class="card">
+      <div class="ribbon">Paused</div>
+      <p class="sub">The grove will wait for you.</p>
+      <button class="btn big" id="resumeBtn" type="button">Resume ▶</button>
+      <div class="row">
+        <button class="btn alt" id="howBtn" type="button">How to play</button>
+      </div>
+      <button class="link-btn" id="newBtn" type="button">New game</button>
+    </div>
+  </section>
+
+  <section id="win" class="screen dim hidden">
+    <div class="card">
+      <div class="ribbon">The feast is ready</div>
+      <h1>You shared iftar</h1>
+      <p class="sub">Baskets shared: <b id="winServed">0</b></p>
+      <blockquote class="hadith"></blockquote>
+      <p class="source hadith-src"></p>
+      <div class="explain"><b>What does it mean?</b><p id="hadithExplain"></p></div>
+      <button class="btn big" id="keepBtn" type="button">Keep sharing ▶</button>
+    </div>
+  </section>
+
+  <div id="joy" class="hidden"><div id="knob"></div></div>
+<script src="../site-extras.js" defer></script>
+</body>
+</html>

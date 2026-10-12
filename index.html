@@ -1,150 +1,226 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-hub="1">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ummah Kids Games — fun Islamic games for children</title>
-  <meta name="description" content="Free games for Muslim families: bake Eid treats, explore Hajj, solve puzzles together, dress up, learn maths, and more." />
-  <meta name="theme-color" content="#5cc8ff" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet" />
-  <style>
-    :root { --ink: #4a2f12; --green: #3fae49; --green-dark: #2b8a34; --card: #fffaf0; }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0; min-height: 100vh; font-family: 'Baloo 2', system-ui, sans-serif; color: var(--ink);
-      background: linear-gradient(#5cc8ff 0%, #9fe0ff 40%, #d9f5ff 70%, #bff0a8 100%) fixed;
-    }
-    header { text-align: center; padding: 48px 16px 12px; }
-    h1 { margin: 0; font-size: clamp(2.2rem, 6vw, 3.6rem); line-height: 1; color: #fff;
-      text-shadow: 0 4px 0 #2a7fb8, 0 8px 18px rgba(0,0,0,.15); }
-    header p { font-size: 1.25rem; margin: 12px auto 0; max-width: 560px; color: #1f4a66; font-weight: 700; }
-    main { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 22px;
-      max-width: 1180px; margin: 24px auto 40px; padding: 0 20px; }
-    a.card {
-      display: flex; flex-direction: column; text-decoration: none; color: inherit; background: var(--card);
-      border: 4px solid #fff; border-radius: 28px; overflow: hidden;
-      box-shadow: 0 8px 0 #e0c99a, 0 18px 40px rgba(0,0,0,.14); transition: transform .15s;
-    }
-    a.card:hover, a.card:focus-visible { transform: translateY(-6px) rotate(-.5deg); outline: none; }
-    .art { height: 150px; display: grid; place-items: center; font-size: 4.6rem; }
-    .body { padding: 14px 20px 20px; display: flex; flex-direction: column; flex: 1; }
-    h2 { margin: 0; font-size: 1.55rem; line-height: 1.1; }
-    .tag { display: inline-block; font-size: .8rem; font-weight: 800; color: #fff; border-radius: 999px;
-      padding: 1px 10px; margin: 6px 0; align-self: flex-start; }
-    .body p { margin: 4px 0 14px; font-size: 1.02rem; line-height: 1.35; flex: 1; }
-    .play { align-self: flex-start; background: var(--green); color: #fff; font-weight: 800; font-size: 1.15rem;
-      border-radius: 16px; padding: 6px 22px; box-shadow: 0 5px 0 var(--green-dark); }
-    footer { text-align: center; padding: 10px 16px 36px; font-size: .95rem; color: #2d5a2a; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ummah Kids Games — free Islamic games for children</title>
+<meta name="description" content="Free games for Muslim families: learn, share, count and move. No sign-in, no ads.">
+<meta name="theme-color" content="#faf6ef">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#faf6ef;--panel:#fff;--ink:#2b2118;--mute:#7b6d5e;--line:#eadfce;--accent:#f2761b;--accent-d:#d45f0a;--r:18px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.4 system-ui,-apple-system,'Segoe UI',sans-serif}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,.brand,.tile b,.hero h2{font-family:'Baloo 2',system-ui,sans-serif}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:14px;padding:10px 18px;background:rgba(250,246,239,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.brand{font-weight:800;font-size:1.25rem;white-space:nowrap}
+.search{flex:1;max-width:460px;position:relative}
+.search input{width:100%;padding:9px 14px 9px 36px;border:1px solid var(--line);border-radius:999px;background:#fff;font:inherit;color:inherit}
+.search input:focus{outline:2px solid var(--accent);border-color:transparent}
+.search:before{content:'🔍';position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:.9rem;opacity:.6}
+.top .note{margin-left:auto;color:var(--mute);font-size:.85rem;white-space:nowrap}
+main{max-width:1240px;margin:0 auto;padding:16px 22px 40px}
+.tiles{display:flex;gap:12px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+.tile{flex:0 0 150px;height:112px;border-radius:var(--r);padding:12px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;position:relative;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.tile span{position:absolute;top:10px;left:12px;font-size:1.9rem}
+.tile b{font-size:1.05rem;line-height:1.1;text-shadow:0 1px 2px rgba(0,0,0,.25)}.tile small{opacity:.9}
+.hero{position:relative;margin:16px 0 8px;border-radius:24px;overflow:hidden;min-height:300px;color:#fff;display:flex;align-items:flex-end;background:#333}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,12,4,.85) 0%,rgba(20,12,4,.35) 60%,rgba(20,12,4,0) 100%)}
+.hero div{position:relative;z-index:1;padding:28px;max-width:520px}
+.hero small{letter-spacing:.1em;text-transform:uppercase;opacity:.85;font-size:.75rem}
+.hero h2{margin:4px 0 6px;font-size:2.2rem;line-height:1}.hero p{margin:0 0 16px;opacity:.92}
+.btn{display:inline-block;background:var(--accent);color:#fff;font-weight:700;padding:10px 22px;border-radius:999px}.btn:hover{background:var(--accent-d)}
+.row{margin-top:26px}
+.rowhead{display:flex;align-items:baseline;gap:12px;margin-bottom:10px;flex-wrap:wrap}
+.rowhead h2{margin:0;font-size:1.45rem}.rowhead span{color:var(--mute);font-size:.88rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+.card{display:block;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:transform .15s,box-shadow .15s}
+.card:hover,.card:focus-visible{transform:translateY(-3px);box-shadow:0 10px 24px rgba(60,40,10,.14);outline:none}
+.thumb{position:relative;aspect-ratio:16/10;background:#e8dcc4;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.new{position:absolute;top:8px;right:8px;background:#7c5cf0;color:#fff;font-size:.7rem;font-weight:800;padding:2px 9px;border-radius:999px}
+.go{position:absolute;right:8px;bottom:8px;background:var(--accent);color:#fff;font-weight:700;font-size:.82rem;padding:4px 12px;border-radius:999px;opacity:0;transform:translateY(4px);transition:.15s}
+.card:hover .go,.card:focus-visible .go{opacity:1;transform:none}
+.meta{padding:10px 12px 12px}.meta h3{margin:2px 0 0;font-size:1.05rem;line-height:1.15}
+.genre{font-size:.76rem;color:var(--mute);font-weight:600}
+.wabtn{background:#25d366;color:#fff;font-weight:800;padding:8px 16px;border-radius:999px;white-space:nowrap;font-family:'Baloo 2',system-ui,sans-serif}.wabtn:hover{background:#1ebe5a}
+.fb{margin:30px 0 0;padding:24px;border-radius:24px;background:linear-gradient(135deg,#1f8f55,#25d366);color:#fff;display:grid;grid-template-columns:1.2fr 1fr;gap:22px;align-items:center}
+.fb h2{margin:0 0 6px;font-size:1.7rem;line-height:1.1}.fb p{margin:0;opacity:.95}
+.fbbtns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fbbtns a{background:#fff;color:#14532d;font-weight:800;padding:12px 14px;border-radius:14px;text-align:center;font-family:'Baloo 2',system-ui,sans-serif}.fbbtns a:hover{background:#eafff2}
+@media(max-width:860px){.fb{grid-template-columns:1fr}.wabtn{padding:8px 12px;font-size:.85rem}}
+.filtered .fb{display:none}
+.empty{display:none;padding:40px 0;color:var(--mute);text-align:center}
+.filtered .hero,.filtered [data-row]{display:none}
+#results{display:none;margin-top:18px}.filtered #results{display:block}
+#results h2{margin:6px 0 12px}.back{color:var(--accent-d);font-weight:700}
+.about{margin:36px 0 0;padding:26px;border-radius:24px;background:#2c3e2f;color:#eef3e8}
+.about h2{margin:0 0 6px;font-size:1.6rem}.about p{margin:0;max-width:640px;opacity:.9}
+footer{max-width:1400px;margin:0 auto;padding:20px 24px 40px;color:var(--mute);font-size:.85rem}
+@media(max-width:860px){
+ .top .note{display:none}.hero{min-height:240px}.hero h2{font-size:1.7rem}main{padding:12px 14px 30px}
+}
+</style>
 </head>
 <body>
-  <header>
-    <h1>🌙 Ummah Kids Games</h1>
-    <p>Cheerful little games to learn, share, count and move — with a sprinkle of Hadith and Quran.</p>
-  </header>
-  <main>
-    <a class="card" href="https://nabil6391.github.io/banana-basket/">
-      <div class="art" style="background:linear-gradient(#ffe45c,#ffc21a)">🍌🧺</div>
-      <div class="body">
-        <h2>Banana Basket</h2>
-        <span class="tag" style="background:#e8b100">Ages 5–10 · Arcade</span>
-        <p>Read the Hadith of the Day, then catch falling bananas, dodge the Storm Cloud's bombs and unlock powers!</p>
-        <span class="play">Play ▶</span>
-      </div>
-    </a>
-    <a class="card" href="./noor-defenders/">
-      <div class="art" style="background:linear-gradient(#7de0c8,#2fb39a)">🕌🏮</div>
-      <div class="body">
-        <h2>Noor Defenders</h2>
-        <span class="tag" style="background:#2fb39a">Ages 6–12 · Tower defense</span>
-        <p>Grumpy Gloomies are heading for the masjid! Build good-deed towers to cheer them up and keep the lanterns shining.</p>
-        <span class="play">Play ▶</span>
-      </div>
-    </a>
-    <a class="card" href="./tayyib-treats/">
-      <div class="art" style="background:linear-gradient(#ffd0e4,#ff8fbd)">🐰🥕</div>
-      <div class="body">
-        <h2>Tayyib Treats</h2>
-        <span class="tag" style="background:#e0508a">Ages 4–9 · Feeding game</span>
-        <p>Hungry animal friends need good, wholesome food. Pick the tayyib treats — not the junk!</p>
-        <span class="play">Play ▶</span>
-      </div>
-    </a>
-    <a class="card" href="./eid-bazaar-math/">
-      <div class="art" style="background:linear-gradient(#ffe0a3,#ffb347)">➕🎁</div>
-      <div class="body">
-        <h2>Eid Bazaar Math</h2>
-        <span class="tag" style="background:#e08a1a">Ages 5–8 · Addition story</span>
-        <p>Help Amina and Zaid get ready for Eid by adding dates, lanterns and gifts — with read-aloud and counting helpers.</p>
-        <span class="play">Play ▶</span>
-      </div>
-    </a>
-    <a class="card" href="./strong-believer/">
-      <div class="art" style="background:linear-gradient(#bfe3ff,#5ca8ff)">🏹🐪</div>
-      <div class="body">
-        <h2>Strong Believer</h2>
-        <span class="tag" style="background:#3a7fd6">Ages 6–12 · Move with your webcam</span>
-        <p>Archery, desert gallops and races from the Sunnah — your body is the controller! Camera video never leaves your device.</p>
-        <span class="play">Play ▶</span>
-      </div>
-    </a>
-    <a class="card" href="./eid-sweets-bakery/">
-      <div class="art" style="background:linear-gradient(#ffe0e9,#ff9eb8)">🧁🎁</div>
-      <div class="body">
-        <h2>Eid Sweets Bakery</h2>
-        <span class="tag" style="background:#d95684">Ages 5–11 · Baking</span>
-        <p>Bake, decorate and box Eid treats, then share them with your neighbours.</p>
-        <span class="play">Play ▶</span>
-      </div>
-    </a>
-    <a class="card" href="./hajj-journey/">
-      <div class="art" style="background:linear-gradient(#fff0c7,#e0b96e)">🕋🎲</div>
-      <div class="body">
-        <h2>Hajj Journey</h2>
-        <span class="tag" style="background:#a87829">Ages 6–12 · Board game</span>
-        <p>Travel through the stations of Hajj together in a gentle family board game.</p>
-        <span class="play">Play ▶</span>
-      </div>
-    </a>
-    <a class="card" href="./modest-dress-up/">
-      <div class="art" style="background:linear-gradient(#e8d5ff,#b994ed)">🧕✨</div>
-      <div class="body">
-        <h2>Modest Style Studio</h2>
-        <span class="tag" style="background:#8c5ac4">Ages 5–11 · Dress up</span>
-        <p>Help Amina choose modest outfits for Eid, school, the masjid and more.</p>
-        <span class="play">Play ▶</span>
-      </div>
-    </a>
-    <a class="card" href="./sadaqah-siblings/">
-      <div class="art" style="background:linear-gradient(#c8f4dc,#72cf9b)">📦🤝</div>
-      <div class="body">
-        <h2>Sadaqah Siblings</h2>
-        <span class="tag" style="background:#359c68">Ages 6–12 · Co-op puzzle</span>
-        <p>Work together to deliver food, water and gifts before iftar.</p>
-        <span class="play">Play ▶</span>
-      </div>
-    </a>
-    <a class="card" href="./moonlight-observatory/">
-      <div class="art" style="background:linear-gradient(#536b9c,#1c3155)">🌅🌙</div>
-      <div class="body">
-        <h2>Moonlight Observatory</h2>
-        <span class="tag" style="background:#50688e">Ages 6–12 · Sky puzzles</span>
-        <p>Move the sun, follow the shadows and discover six gentle sky stories together.</p>
-        <span class="play">Play ▶</span>
-      </div>
-    </a>
-    <a class="card" href="./last-light/">
-      <div class="art" style="background:linear-gradient(#33425e,#111a2d)">🏮🌙</div>
-      <div class="body">
-        <h2>Last Light</h2>
-        <span class="tag" style="background:#43577c">Strategy · Defend the light</span>
-        <p>Move a single lamp to keep the prayer hall lit until fajr.</p>
-        <span class="play">Play ▶</span>
-      </div>
-    </a>
-  </main>
-  <footer>Games for the whole family.</footer>
+<header class="top">
+  <a class="brand" href="./">🌙 Ummah Kids Games</a>
+  <label class="search"><input id="q" type="search" placeholder="Search games  ( / )" autocomplete="off" aria-label="Search games"></label>
+  <span class="note">Free · no sign-in · no ads</span>
+  <a class="wabtn" href="https://wa.me/601161981135?text=Assalamu%20alaikum%21%20I%20have%20an%20idea%20for%20Ummah%20Kids%20Games%3A%20" target="_blank" rel="noopener">💬 Feedback &amp; ideas</a>
+</header>
+<main id="main">
+  <div class="tiles"><a class="tile" href="#" data-filter="sec:play" style="background:linear-gradient(135deg,#ffd37a,#ff9f45)"><span>🎮</span><b>Play & learn</b><small>14 games</small></a><a class="tile" href="#" data-filter="sec:camera" style="background:linear-gradient(135deg,#8fd6ff,#4f9be8)"><span>📷</span><b>Move with your camera</b><small>2 games</small></a><a class="tile" href="#" data-filter="sec:family" style="background:linear-gradient(135deg,#c3b2f5,#8670d6)"><span>👨‍👩‍👧</span><b>Family Deen</b><small>5 games</small></a><a class="tile" href="#" data-filter="genre:Puzzle" style="background:linear-gradient(135deg,#9be7c4,#3fb68b)"><span>🧩</span><b>Puzzle</b><small>2 games</small></a><a class="tile" href="#" data-filter="genre:Arcade" style="background:linear-gradient(135deg,#ffb3a7,#ee6c5a)"><span>🎯</span><b>Arcade</b><small>2 games</small></a><a class="tile" href="#" data-filter="genre:Sim" style="background:linear-gradient(135deg,#f6d98a,#d9a441)"><span>🏗️</span><b>Sim</b><small>2 games</small></a></div>
+  <a class="hero" href="./alphabet-moves/"><img src="./thumbs/alphabet-moves.webp" alt=""><div><small>New · Camera games</small><h2>Alphabet Moves</h2><p>18 camera games: trace letters in the sky, jump the rope, dodge, dance and more. Needs a webcam, or play with taps and keys.</p><span class="btn">Play now ▶</span></div></a>
+  <section class="row" data-row><div class="rowhead"><h2>✨ New on the shelf</h2><span>Recently added</span></div>
+<div class="grid"><a class="card" href="./alphabet-moves/" data-sec="camera" data-genre="Camera" data-text="alphabet moves camera 18 camera games: trace letters in the sky, jump the rope, dodge, dance and more. needs a webcam, or play with taps and keys.">
+  <div class="thumb"><img src="./thumbs/alphabet-moves.webp" alt="" loading="lazy" width="640" height="400"><span class="new">New</span><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">📷 Camera · Ages 4–9</span><h3>Alphabet Moves</h3></div>
+</a><a class="card" href="./archery-of-the-sunnah/" data-sec="play" data-genre="Arcade" data-text="archery of the sunnah arcade aim, draw and loose your arrow at balloons and targets. earn stars and coins, then unlock the armory.">
+  <div class="thumb"><img src="./thumbs/archery-of-the-sunnah.webp" alt="" loading="lazy" width="640" height="400"><span class="new">New</span><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">🎯 Arcade</span><h3>Archery of the Sunnah</h3></div>
+</a><a class="card" href="./fanoos-nights/" data-sec="play" data-genre="Adventure" data-text="fanoos nights adventure collect lanterns from the workshop and light up the neighbourhood before fajr.">
+  <div class="thumb"><img src="./thumbs/fanoos-nights.webp" alt="" loading="lazy" width="640" height="400"><span class="new">New</span><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">🧭 Adventure</span><h3>Fanoos Nights</h3></div>
+</a><a class="card" href="./iftar-grove/" data-sec="play" data-genre="Casual" data-text="iftar grove casual share dates and water with your neighbours before the sun sets.">
+  <div class="thumb"><img src="./thumbs/iftar-grove.webp" alt="" loading="lazy" width="640" height="400"><span class="new">New</span><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">🍬 Casual</span><h3>Iftar Grove</h3></div>
+</a><a class="card" href="./zellige-studio/" data-sec="play" data-genre="Puzzle" data-text="zellige studio puzzle paint one tile and its mirror twins light up too. fill every tile to make the pattern glow.">
+  <div class="thumb"><img src="./thumbs/zellige-studio.webp" alt="" loading="lazy" width="640" height="400"><span class="new">New</span><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">🧩 Puzzle</span><h3>Zellige Studio</h3></div>
+</a><a class="card" href="./sadaqah-well/" data-sec="play" data-genre="Sim" data-text="sadaqah well sim dig a well, build a village and keep the charity flowing. sadaqah jariyah, one drink at a time.">
+  <div class="thumb"><img src="./thumbs/sadaqah-well.webp" alt="" loading="lazy" width="640" height="400"><span class="new">New</span><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">🏗️ Sim · Ages 5–99</span><h3>Sadaqah Well</h3></div>
+</a><a class="card" href="./masjid-maker/" data-sec="play" data-genre="Adventure" data-text="masjid makers adventure travel through time across a world map and build more than 80 real masjids.">
+  <div class="thumb"><img src="./thumbs/masjid-maker.webp" alt="" loading="lazy" width="640" height="400"><span class="new">New</span><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">🧭 Adventure</span><h3>Masjid Makers</h3></div>
+</a></div></section>
+  <section class="fb" id="feedback">
+    <div>
+      <h2>Got an idea? Tell us on WhatsApp 💚</h2>
+      <p>These games are new, and your ideas decide what we fix and build next. Suggest a brand new game, tell us how to make one of these better, or report a bug. It opens WhatsApp with a message ready to edit and send.</p>
+    </div>
+    <div class="fbbtns">
+      <a href="https://wa.me/601161981135?text=Assalamu%20alaikum%21%20I%20would%20love%20a%20game%20about%3A%20" target="_blank" rel="noopener">🎮 Suggest a new game</a>
+      <a href="https://wa.me/601161981135?text=Assalamu%20alaikum%21%20I%20have%20an%20idea%20to%20improve%20one%20of%20your%20games.%20The%20game%20is%3A%20" target="_blank" rel="noopener">💡 Idea for an existing game</a>
+      <a href="https://wa.me/601161981135?text=Assalamu%20alaikum%21%20Feedback%20on%20Ummah%20Kids%20Games%3A%20" target="_blank" rel="noopener">💬 General feedback</a>
+      <a href="https://wa.me/601161981135?text=Assalamu%20alaikum%21%20Something%20is%20broken.%20The%20game%20is%3A%20" target="_blank" rel="noopener">🐞 Report a problem</a>
+    </div>
+  </section>
+  <section class="row" data-row><div class="rowhead"><h2>📷 Move with your camera</h2><span>Your body is the controller. Nothing is recorded or uploaded, and every game also works with taps and keys</span></div>
+<div class="grid"><a class="card" href="./alphabet-moves/" data-sec="camera" data-genre="Camera" data-text="alphabet moves camera 18 camera games: trace letters in the sky, jump the rope, dodge, dance and more. needs a webcam, or play with taps and keys.">
+  <div class="thumb"><img src="./thumbs/alphabet-moves.webp" alt="" loading="lazy" width="640" height="400"><span class="new">New</span><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">📷 Camera · Ages 4–9</span><h3>Alphabet Moves</h3></div>
+</a><a class="card" href="./strong-believer/" data-sec="camera" data-genre="Camera" data-text="strong believer camera archery, desert gallops and races from the sunnah. your body is the controller, and the video never leaves your device.">
+  <div class="thumb"><img src="./thumbs/strong-believer.webp" alt="" loading="lazy" width="640" height="400"><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">📷 Camera · Ages 6–12</span><h3>Strong Believer</h3></div>
+</a></div></section>
+  <section class="row" data-row><div class="rowhead"><h2>👨‍👩‍👧 Family Deen</h2><span>Parent + child games. The grown-up leads the conversation</span></div>
+<div class="grid"><a class="card" href="./family-deen-stories/" data-sec="family" data-genre="Family" data-text="stories by the fire family a parent reads aloud, the child predicts what happens, then the story and ayah are revealed.">
+  <div class="thumb"><img src="./thumbs/family-deen-stories.webp" alt="" loading="lazy" width="640" height="400"><span class="new">New</span><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">👨‍👩‍👧 Family</span><h3>Stories by the Fire</h3></div>
+</a><a class="card" href="./family-deen-detective/" data-sec="family" data-genre="Family" data-text="muslim detective family everyday ethics cases: investigate, find the islamic evidence, decide, and see the consequences.">
+  <div class="thumb"><img src="./thumbs/family-deen-detective.webp" alt="" loading="lazy" width="640" height="400"><span class="new">New</span><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">👨‍👩‍👧 Family</span><h3>Muslim Detective</h3></div>
+</a><a class="card" href="./family-deen-house/" data-sec="family" data-genre="Family" data-text="house of knowledge family a cooperative escape room: the child has the room, the parent has the scroll.">
+  <div class="thumb"><img src="./thumbs/family-deen-house.webp" alt="" loading="lazy" width="640" height="400"><span class="new">New</span><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">👨‍👩‍👧 Family</span><h3>House of Knowledge</h3></div>
+</a><a class="card" href="./family-deen-treasure/" data-sec="family" data-genre="Family" data-text="quran treasure hunt family clues are solved with a real mushaf. the fog lifts off the island map as you read.">
+  <div class="thumb"><img src="./thumbs/family-deen-treasure.webp" alt="" loading="lazy" width="640" height="400"><span class="new">New</span><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">👨‍👩‍👧 Family</span><h3>Quran Treasure Hunt</h3></div>
+</a><a class="card" href="./family-deen-teach-me/" data-sec="family" data-genre="Family" data-text="teach me, baba/mama! family the child becomes the teacher! a party game with six modes and a family book.">
+  <div class="thumb"><img src="./thumbs/family-deen-teach-me.webp" alt="" loading="lazy" width="640" height="400"><span class="new">New</span><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">👨‍👩‍👧 Family</span><h3>Teach Me, Baba/Mama!</h3></div>
+</a></div></section>
+  <section class="row" data-row><div class="rowhead"><h2>🗂️ All games</h2><span>21 games</span></div>
+<div class="grid"><a class="card" href="./alphabet-moves/" data-sec="camera" data-genre="Camera" data-text="alphabet moves camera 18 camera games: trace letters in the sky, jump the rope, dodge, dance and more. needs a webcam, or play with taps and keys.">
+  <div class="thumb"><img src="./thumbs/alphabet-moves.webp" alt="" loading="lazy" width="640" height="400"><span class="new">New</span><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">📷 Camera · Ages 4–9</span><h3>Alphabet Moves</h3></div>
+</a><a class="card" href="./strong-believer/" data-sec="camera" data-genre="Camera" data-text="strong believer camera archery, desert gallops and races from the sunnah. your body is the controller, and the video never leaves your device.">
+  <div class="thumb"><img src="./thumbs/strong-believer.webp" alt="" loading="lazy" width="640" height="400"><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">📷 Camera · Ages 6–12</span><h3>Strong Believer</h3></div>
+</a><a class="card" href="https://nabil6391.github.io/banana-basket/" target="_blank" rel="noopener" data-sec="play" data-genre="Arcade" data-text="banana basket arcade read the hadith of the day, then catch falling bananas, dodge the storm cloud&#x27;s bombs and unlock powers!">
+  <div class="thumb"><img src="./thumbs/banana-basket.webp" alt="" loading="lazy" width="640" height="400"><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">🎯 Arcade · Ages 5–10</span><h3>Banana Basket</h3></div>
+</a><a class="card" href="./archery-of-the-sunnah/" data-sec="play" data-genre="Arcade" data-text="archery of the sunnah arcade aim, draw and loose your arrow at balloons and targets. earn stars and coins, then unlock the armory.">
+  <div class="thumb"><img src="./thumbs/archery-of-the-sunnah.webp" alt="" loading="lazy" width="640" height="400"><span class="new">New</span><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">🎯 Arcade</span><h3>Archery of the Sunnah</h3></div>
+</a><a class="card" href="./noor-defenders/" data-sec="play" data-genre="Strategy" data-text="noor defenders strategy grumpy gloomies are heading for the masjid! build good-deed towers to cheer them up and keep the lanterns shining.">
+  <div class="thumb"><img src="./thumbs/noor-defenders.webp" alt="" loading="lazy" width="640" height="400"><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">♟️ Strategy · Ages 6–12</span><h3>Noor Defenders</h3></div>
+</a><a class="card" href="./tayyib-treats/" data-sec="play" data-genre="Casual" data-text="tayyib treats casual hungry animal friends need good, wholesome food. pick the tayyib treats, not the junk!">
+  <div class="thumb"><img src="./thumbs/tayyib-treats.webp" alt="" loading="lazy" width="640" height="400"><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">🍬 Casual · Ages 4–9</span><h3>Tayyib Treats</h3></div>
+</a><a class="card" href="./eid-bazaar-math/" data-sec="play" data-genre="Learning" data-text="eid bazaar math learning help amina and zaid get ready for eid by adding dates, lanterns and gifts, with read-aloud and counting helpers.">
+  <div class="thumb"><img src="./thumbs/eid-bazaar-math.webp" alt="" loading="lazy" width="640" height="400"><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">🔢 Learning · Ages 5–8</span><h3>Eid Bazaar Math</h3></div>
+</a><a class="card" href="./eid-sweets-bakery/" data-sec="play" data-genre="Sim" data-text="eid sweets bakery sim bake, decorate and box eid treats, then share them with your neighbours.">
+  <div class="thumb"><img src="./thumbs/eid-sweets-bakery.webp" alt="" loading="lazy" width="640" height="400"><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">🏗️ Sim · Ages 5–11</span><h3>Eid Sweets Bakery</h3></div>
+</a><a class="card" href="./hajj-journey/" data-sec="play" data-genre="Board" data-text="hajj journey board travel through the stations of hajj together in a gentle family board game.">
+  <div class="thumb"><img src="./thumbs/hajj-journey.webp" alt="" loading="lazy" width="640" height="400"><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">🎲 Board · Ages 6–12</span><h3>Hajj Journey</h3></div>
+</a><a class="card" href="./modest-dress-up/" data-sec="play" data-genre="Dress up" data-text="modest style studio dress up help amina choose modest outfits for eid, school, the masjid and more.">
+  <div class="thumb"><img src="./thumbs/modest-dress-up.webp" alt="" loading="lazy" width="640" height="400"><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">👗 Dress up · Ages 5–11</span><h3>Modest Style Studio</h3></div>
+</a><a class="card" href="./sadaqah-siblings/" data-sec="play" data-genre="Puzzle" data-text="sadaqah siblings puzzle work together to deliver food, water and gifts before iftar.">
+  <div class="thumb"><img src="./thumbs/sadaqah-siblings.webp" alt="" loading="lazy" width="640" height="400"><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">🧩 Puzzle · Ages 6–12</span><h3>Sadaqah Siblings</h3></div>
+</a><a class="card" href="./fanoos-nights/" data-sec="play" data-genre="Adventure" data-text="fanoos nights adventure collect lanterns from the workshop and light up the neighbourhood before fajr.">
+  <div class="thumb"><img src="./thumbs/fanoos-nights.webp" alt="" loading="lazy" width="640" height="400"><span class="new">New</span><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">🧭 Adventure</span><h3>Fanoos Nights</h3></div>
+</a><a class="card" href="./iftar-grove/" data-sec="play" data-genre="Casual" data-text="iftar grove casual share dates and water with your neighbours before the sun sets.">
+  <div class="thumb"><img src="./thumbs/iftar-grove.webp" alt="" loading="lazy" width="640" height="400"><span class="new">New</span><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">🍬 Casual</span><h3>Iftar Grove</h3></div>
+</a><a class="card" href="./zellige-studio/" data-sec="play" data-genre="Puzzle" data-text="zellige studio puzzle paint one tile and its mirror twins light up too. fill every tile to make the pattern glow.">
+  <div class="thumb"><img src="./thumbs/zellige-studio.webp" alt="" loading="lazy" width="640" height="400"><span class="new">New</span><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">🧩 Puzzle</span><h3>Zellige Studio</h3></div>
+</a><a class="card" href="./sadaqah-well/" data-sec="play" data-genre="Sim" data-text="sadaqah well sim dig a well, build a village and keep the charity flowing. sadaqah jariyah, one drink at a time.">
+  <div class="thumb"><img src="./thumbs/sadaqah-well.webp" alt="" loading="lazy" width="640" height="400"><span class="new">New</span><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">🏗️ Sim · Ages 5–99</span><h3>Sadaqah Well</h3></div>
+</a><a class="card" href="./masjid-maker/" data-sec="play" data-genre="Adventure" data-text="masjid makers adventure travel through time across a world map and build more than 80 real masjids.">
+  <div class="thumb"><img src="./thumbs/masjid-maker.webp" alt="" loading="lazy" width="640" height="400"><span class="new">New</span><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">🧭 Adventure</span><h3>Masjid Makers</h3></div>
+</a><a class="card" href="./family-deen-stories/" data-sec="family" data-genre="Family" data-text="stories by the fire family a parent reads aloud, the child predicts what happens, then the story and ayah are revealed.">
+  <div class="thumb"><img src="./thumbs/family-deen-stories.webp" alt="" loading="lazy" width="640" height="400"><span class="new">New</span><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">👨‍👩‍👧 Family</span><h3>Stories by the Fire</h3></div>
+</a><a class="card" href="./family-deen-detective/" data-sec="family" data-genre="Family" data-text="muslim detective family everyday ethics cases: investigate, find the islamic evidence, decide, and see the consequences.">
+  <div class="thumb"><img src="./thumbs/family-deen-detective.webp" alt="" loading="lazy" width="640" height="400"><span class="new">New</span><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">👨‍👩‍👧 Family</span><h3>Muslim Detective</h3></div>
+</a><a class="card" href="./family-deen-house/" data-sec="family" data-genre="Family" data-text="house of knowledge family a cooperative escape room: the child has the room, the parent has the scroll.">
+  <div class="thumb"><img src="./thumbs/family-deen-house.webp" alt="" loading="lazy" width="640" height="400"><span class="new">New</span><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">👨‍👩‍👧 Family</span><h3>House of Knowledge</h3></div>
+</a><a class="card" href="./family-deen-treasure/" data-sec="family" data-genre="Family" data-text="quran treasure hunt family clues are solved with a real mushaf. the fog lifts off the island map as you read.">
+  <div class="thumb"><img src="./thumbs/family-deen-treasure.webp" alt="" loading="lazy" width="640" height="400"><span class="new">New</span><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">👨‍👩‍👧 Family</span><h3>Quran Treasure Hunt</h3></div>
+</a><a class="card" href="./family-deen-teach-me/" data-sec="family" data-genre="Family" data-text="teach me, baba/mama! family the child becomes the teacher! a party game with six modes and a family book.">
+  <div class="thumb"><img src="./thumbs/family-deen-teach-me.webp" alt="" loading="lazy" width="640" height="400"><span class="new">New</span><span class="go">Play ▶</span></div>
+  <div class="meta"><span class="genre">👨‍👩‍👧 Family</span><h3>Teach Me, Baba/Mama!</h3></div>
+</a></div></section>
+  <section id="results"><a href="#" data-filter="" class="back">← Back to all games</a><h2 id="rtitle">Results</h2><div class="grid" id="rgrid"></div><p class="empty" id="empty">No games match that. Try another word.</p></section>
+  <section class="about"><h2>Made for Muslim families</h2><p>Every game is free, works in the browser, and has no sign-in, no ads and no tracking of children. Games with a camera keep the video on your device. Tell us what you think using the 💬 button.</p></section>
+</main>
+<footer>© Ummah Kids Games · Games for the whole family.</footer>
+<script>
+const ALL=[...[...document.querySelectorAll('[data-row]')].pop().querySelectorAll('.card')].map(c=>c.cloneNode(true));
+const $=s=>document.querySelector(s), main=$('#main'), grid=$('#rgrid');
+function show(title,list){main.classList.add('filtered');$('#rtitle').textContent=title;grid.replaceChildren(...list.map(c=>c.cloneNode(true)));$('#empty').style.display=list.length?'none':'block';}
+function apply(f,q){
+  if(q){show('Search: '+q,ALL.filter(c=>c.dataset.text.includes(q.toLowerCase())));return}
+  if(!f){main.classList.remove('filtered');return}
+  if(f==='all')return show('All games',ALL);
+  const [k,v]=f.split(':');
+  const name=$('.tile[data-filter="'+f+'"] b').textContent;
+  show(name,ALL.filter(c=>c.dataset[k==='sec'?'sec':'genre']===v));
+}
+document.addEventListener('click',e=>{const a=e.target.closest('[data-filter]');if(!a)return;e.preventDefault();$('#q').value='';apply(a.dataset.filter);scrollTo({top:0,behavior:'smooth'})});
+$('#q').addEventListener('input',e=>apply('',e.target.value.trim()));
+addEventListener('keydown',e=>{if(e.key==='/'&&document.activeElement.tagName!=='INPUT'){e.preventDefault();$('#q').focus()}});
+</script>
+<script src="./site-extras.js" defer></script>
 </body>
 </html>

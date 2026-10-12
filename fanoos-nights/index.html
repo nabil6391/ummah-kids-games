@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+  <title>Fanoos Nights</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet" />
+  <script type="module" crossorigin src="./assets/index-oLDzqxIi.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BUULLozY.css">
+</head>
+<body>
+  <canvas id="scene"></canvas>
+
+  <div id="hud" class="hidden">
+    <div class="pill"><span class="coin"></span><span id="coins">0</span></div>
+    <div id="night-bar">
+      <div class="lbl" id="night-lbl">Night 1</div>
+      <div class="bar"><div class="fill" id="night-fill"></div></div>
+    </div>
+    <div id="hud-right">
+      <button class="icon-btn" id="btn-shop">🛠️</button>
+      <button class="icon-btn" id="btn-mute">🔊</button>
+    </div>
+    <div id="objective">Deliver lanterns to glowing houses!</div>
+  </div>
+
+  <div id="joy"><div id="joy-knob"></div></div>
+
+  <section class="screen dim" id="intro">
+    <div class="card">
+      <h1 class="logo">Fanoos <span class="g">Nights</span></h1>
+      <p class="sub">🌙 <span id="intro-sub"></span></p>
+      <p>Craft colourful fanoos lanterns at the workshop, then hurry through the night streets and light up every home before Fajr. Earn gold coins to unlock new neighbours, upgrades and the masjid.</p>
+      <button class="btn" id="btn-start">Begin Night 1</button>
+      <button class="btn blue" id="btn-continue">Continue</button>
+      <p style="font-size:.85rem;opacity:.75">WASD / arrows or drag anywhere to move. Stand near the workshop bench to pick up lanterns; stand at a glowing doorstep to deliver.</p>
+    </div>
+  </section>
+
+  <section class="screen dim hidden" id="summary">
+    <div class="card">
+      <h1 class="logo" id="summary-title">Fajr Mubarak!</h1>
+      <p id="summary-body"></p>
+      <button class="btn" id="btn-next-night">Next Night 🌙</button>
+    </div>
+  </section>
+
+  <section class="screen dim hidden" id="shop">
+    <div class="card">
+      <div class="ribbon">Upgrade Workshop</div>
+      <div id="shop-rows"></div>
+      <button class="btn blue" id="shop-close">Back to the streets</button>
+    </div>
+  </section>
+
+<script src="../site-extras.js" defer></script>
+</body>
+</html>

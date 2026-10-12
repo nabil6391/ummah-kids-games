@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <link rel="icon" href="data:," />
+  <title>Quran Treasure Hunt · Family Deen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Amiri+Quran&family=Amiri:wght@400;700&display=swap" />
+  <script type="module" crossorigin src="./assets/index-Br2_NBQh.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-Cu9cUU4W.css">
+</head>
+<body>
+  <canvas id="scene"></canvas>
+  <div id="paper"></div>
+  <div id="labels"></div>
+
+  <div id="hud" class="hidden">
+    <div class="hud-left">
+      <div class="pill" id="huntPill"><span id="huntEmoji">📜</span><b id="huntName">Surah Hunt</b><span class="talks" title="Conversations had">💬 <b id="talkCount">0</b></span></div>
+      <div class="pieces" id="pieces"></div>
+    </div>
+    <div class="hud-right">
+      <button class="icon-btn" data-act="surahs" aria-label="Surah list helper" title="Surah list helper">📖</button>
+      <button class="icon-btn" data-act="map" aria-label="Treasure map" title="Treasure map">🗺️</button>
+      <button class="icon-btn" data-act="mute" id="muteBtn" aria-label="Sound on or off" title="Sound">🔊</button>
+      <button class="icon-btn" data-act="home" aria-label="Back to the maps" title="Back to the maps">⌂</button>
+    </div>
+    <div class="rot"><button data-act="rotL" aria-label="Turn left">⟲</button><button data-act="rotR" aria-label="Turn right">⟳</button></div>
+  </div>
+
+  <aside id="panel" class="hidden"></aside>
+  <section id="overlay" class="screen hidden"></section>
+  <section id="surahModal" class="screen hidden">
+    <div class="frame surah-frame">
+      <div class="ribbon">📖 Surah list helper</div>
+      <p class="helper-note">All 114 surahs, in mushaf order. Use this to find your way in your mushaf. The answers are in your Qur'an, not here!</p>
+      <input id="surahSearch" type="search" placeholder="Type a name or number…" autocomplete="off" />
+      <div class="surah-list" id="surahList"></div>
+      <button class="btn" data-act="closeSurahs">Close</button>
+    </div>
+  </section>
+  <div id="flyLayer"></div>
+
+<script src="../site-extras.js" defer></script>
+</body>
+</html>

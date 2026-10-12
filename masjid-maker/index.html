@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#8fd3ea" />
+  <title>Masjid Makers — a journey through time</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕌</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet" />
+  <script type="module" crossorigin src="./assets/index-Cl9BVmVi.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DfYhH2Iq.css">
+</head>
+<body>
+  <canvas id="scene"></canvas>
+  <div id="floats"></div>
+  <div id="joy" class="hidden"><div id="joyKnob"></div></div>
+  <div id="fade"></div>
+
+  <!-- Stage HUD -->
+  <section id="hud" class="hidden">
+    <div class="hud-left">
+      <div class="stage-chip" id="stageChip">🕌 Masjid</div>
+      <div class="coins" id="coinPill"><span class="coin-ico"></span><b id="coins">0</b></div>
+      <div class="progress"><div class="bar"><div id="progBar"></div></div><span id="progText">0 / 0</span></div>
+      <div class="pages-pill" id="pagesPill">📜 <b id="pagesText">0 / 3</b></div>
+    </div>
+    <div id="objective" class="objective"><span id="objIcon">🔨</span><span id="objText">Build</span></div>
+  </section>
+
+  <!-- Map HUD -->
+  <section id="mapHud" class="hidden">
+    <div class="hud-left">
+      <div class="atlas-pill"><span>📖</span><b id="atlasDone">0</b><span class="small">pages</span></div>
+      <div class="atlas-pill star"><span>⭐</span><b id="atlasStars">0</b></div>
+    </div>
+    <div class="map-hint" id="mapHint">Drag to explore the world · tap a masjid</div>
+    <div class="zoom">
+      <button class="icon-btn" id="zoomIn" title="Zoom in">＋</button>
+      <button class="icon-btn" id="zoomOut" title="Zoom out">－</button>
+    </div>
+  </section>
+  <div id="yearBadge" class="hidden"><span class="yl">⏳</span><b id="yearNum">2026</b></div>
+
+  <div id="topbar">
+    <button id="zoomBtn" class="icon-btn hidden" title="Overview (Z)">🔭</button>
+    <button id="swapBtn" class="icon-btn hidden" title="Swap sibling">🔄</button>
+    <button id="buildBtn" class="icon-btn hidden" title="Build menu">🔨</button>
+    <button id="atlasBtn" class="icon-btn hidden" title="The Atlas">📖</button>
+    <button id="muteBtn" class="icon-btn" title="Sound">🔊</button>
+    <button id="menuBtn" class="icon-btn hidden" title="Menu">☰</button>
+  </div>
+  <div id="toasts"></div>
+
+  <!-- Title -->
+  <section id="screen-title" class="screen">
+    <div class="card title-card">
+      <div class="logo"><span class="l1">Masjid</span> Makers</div>
+      <p class="tagline">A journey through time to rebuild the masjids of the Muslim world 🌙</p>
+      <p class="sub small">Who leads the way?</p>
+      <div class="pick" id="charPick">
+        <button class="char on" data-c="ahmad"><span>👦</span><b>Ahmad</b></button>
+        <button class="char" data-c="khadijah"><span>🧕</span><b>Khadijah</b></button>
+      </div>
+      <button class="btn big" id="playBtn">▶ Play</button>
+      <button class="btn alt hidden" id="resetBtn">Start over</button>
+      <p class="hint">Travel the world map to <span class="n-masjids">many</span> real masjids and landmarks in <span class="n-lands">many</span> lands. Walk with <b>WASD</b> / arrow keys or drag on the screen, do good deeds to earn Barakah coins, and build each masjid piece by piece.</p>
+    </div>
+  </section>
+
+  <!-- Story slides -->
+  <section id="screen-story" class="screen dim hidden">
+    <div class="card story-card">
+      <div class="story-art" id="storyArt">📦</div>
+      <div class="speaker" id="storyWho"></div>
+      <p class="story-text" id="storyText"></p>
+      <div class="row">
+        <button class="btn alt" id="storySkip">Skip</button>
+        <button class="btn big" id="storyNext">Next ▶</button>
+      </div>
+      <div class="dots" id="storyDots"></div>
+    </div>
+  </section>
+
+  <!-- Masjid card on the map -->
+  <section id="screen-card" class="screen dim hidden">
+    <div class="card masjid-card">
+      <div class="land-chip" id="cardLand">Arabia</div>
+      <h2 id="cardName">Masjid</h2>
+      <div class="sub small" id="cardSub"></div>
+      <div class="gen-chip hidden" id="cardGen" title="Built by a program from OpenStreetMap and Wikidata, so it is simpler than the hand-built masjids">🗺️ Auto-built from map data</div>
+      <div class="facts-grid">
+        <div><span>📍</span><b id="cardPlace"></b></div>
+        <div><span>🧭</span><b id="cardCoords"></b></div>
+        <div><span>🕰️</span><b id="cardYear"></b></div>
+      </div>
+      <div class="stars-big" id="cardStars">☆☆☆</div>
+      <p class="sub" id="cardBlurb"></p>
+      <div class="row">
+        <button class="btn alt" id="cardClose">Back</button>
+        <button class="btn big" id="cardGo">⏳ Travel</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stage intro -->
+  <section id="screen-intro" class="screen dim hidden">
+    <div class="card intro-card">
+      <div class="chapter hidden" id="introChapter"></div>
+      <div class="ribbon" id="introWhere">Madinah · 622</div>
+      <div class="gen-chip hidden" id="introGen">🗺️ Auto-built from map data</div>
+      <h2 id="introName">Masjid</h2>
+      <div class="dialog" id="introDialog"></div>
+      <p class="sub small">Do good deeds to earn Barakah coins 🪙, build every part 🔨, answer the Architect's Question 🏛️ and find 3 lost Atlas pages 📜.</p>
+      <button class="btn big" id="introGo">Let's build! 🔨</button>
+    </div>
+  </section>
+
+  <!-- Build catalogue -->
+  <section id="screen-build" class="screen dim hidden">
+    <div class="card build-card">
+      <div class="ribbon" id="buildTitle">Build the Masjid</div>
+      <p class="sub small" id="buildHint">Spend Barakah coins on each part.</p>
+      <div id="buildList" class="build-list"></div>
+      <button class="btn big" id="buildClose">Done</button>
+    </div>
+  </section>
+
+  <!-- Architect's question -->
+  <section id="screen-quiz" class="screen dim hidden">
+    <div class="card small-card quiz-card">
+      <div class="big-ico">🏛️</div>
+      <div class="ribbon">Architect's Question</div>
+      <p class="quiz-q" id="quizQ"></p>
+      <div class="quiz-opts" id="quizOpts"></div>
+      <p class="sub small hidden" id="quizHint"></p>
+      <button class="btn alt" id="quizClose">Not yet</button>
+    </div>
+  </section>
+
+  <!-- Page found -->
+  <section id="screen-page" class="screen dim hidden">
+    <div class="card small-card page-card">
+      <div class="big-ico">📜</div>
+      <h2 id="pageTitle">Lost page found!</h2>
+      <p class="page-fact" id="pageFact"></p>
+      <button class="btn big" id="pageOk">Add to the Atlas ✨</button>
+    </div>
+  </section>
+
+  <!-- Stage complete -->
+  <section id="screen-done" class="screen dim hidden">
+    <div class="card done-card">
+      <div class="ribbon gold">📖 Atlas page restored!</div>
+      <h2 id="doneName">Masjid</h2>
+      <div class="sub small" id="donePlace"></div>
+      <div class="stars-big" id="doneStars">☆☆☆</div>
+      <div class="star-why" id="doneWhy"></div>
+      <ul class="done-facts" id="doneFacts"></ul>
+      <blockquote id="doneHadith"></blockquote>
+      <div class="source" id="doneSource"></div>
+      <div class="row">
+        <button class="btn alt" id="doneStay">Keep exploring</button>
+        <button class="btn big" id="doneMap">🗺️ Back to the Atlas</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Atlas list -->
+  <section id="screen-atlas" class="screen dim hidden">
+    <div class="card atlas-card">
+      <div class="ribbon">📖 The Atlas of Masjids</div>
+      <div id="atlasList" class="atlas-list"></div>
+      <button class="btn big" id="atlasClose">Close</button>
+    </div>
+  </section>
+
+  <!-- Menu -->
+  <section id="screen-menu" class="screen dim hidden">
+    <div class="card small-card">
+      <h2>Paused</h2>
+      <p class="sub" id="stats"></p>
+      <button class="btn big" id="menuResume">Resume</button>
+      <button class="btn alt" id="menuBuild">🔨 Build menu</button>
+      <button class="btn alt" id="menuMap">🗺️ Back to the Atlas</button>
+      <button class="btn alt" id="menuHome">Title screen</button>
+    </div>
+  </section>
+
+<script src="../site-extras.js" defer></script>
+</body>
+</html>

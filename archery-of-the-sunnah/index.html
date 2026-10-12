@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#8fd16a" />
+  <title>Archery of the Sunnah — hit the bullseye!</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏹</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet" />
+  <script type="module" crossorigin src="./assets/index-Dr0Z8gp1.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-HKZ7U0Hv.css">
+</head>
+<body>
+  <canvas id="scene"></canvas>
+  <div id="floats"></div>
+
+  <!-- HUD -->
+  <section id="hud" class="hidden">
+    <div class="hud-left">
+      <div class="coins" id="coinPill"><span class="coin-ico"></span><b id="coins">0</b></div>
+      <div class="pill row-pill"><span>🌙</span><b id="roundText">Round 1</b></div>
+      <div class="pill row-pill"><span>🎯</span><b id="scoreText">0</b></div>
+      <div class="pill row-pill" id="arrowsPill"><span>🏹</span><b id="arrowsText">5</b></div>
+      <div class="pill row-pill hidden" id="windPill"><span id="windIcon">🌬️</span><b id="windText">→ 1.2</b></div>
+    </div>
+    <div id="powerWrap" class="hidden"><div id="powerBar"><div id="powerFill"></div></div><span id="powerHint">Release to shoot!</span></div>
+    <div id="objective" class="objective"><span id="objIcon">🎯</span><span id="objText"></span></div>
+  </section>
+  <div id="topbar">
+    <button id="muteBtn" class="icon-btn">🔊</button>
+    <button id="menuBtn" class="icon-btn hidden">☰</button>
+  </div>
+  <div id="toasts"></div>
+
+  <!-- Title -->
+  <section id="screen-title" class="screen">
+    <div class="card title-card">
+      <div class="logo"><span class="l1">Archery</span> <span>of the Sunnah</span></div>
+      <p class="tagline">Aim true at the Eid festival range!</p>
+      <div class="pick" id="charPick">
+        <button class="char on" data-c="boy"><span>👦</span><b>Yusuf</b></button>
+        <button class="char" data-c="girl"><span>🧕</span><b>Maryam</b></button>
+      </div>
+      <button class="btn big" id="playBtn">▶ Play</button>
+      <div class="row">
+        <button class="btn alt" id="howBtn">❓ How to Play</button>
+        <button class="btn alt" id="shopBtn">🏹 Armory</button>
+      </div>
+      <blockquote>“Learn archery, for it is the best of your games.”</blockquote>
+      <div class="source">Saʿd ibn Abī Waqqāṣ, to his son — Musannaf Ibn Abī Shaybah 28002</div>
+      <p class="hint">Drag to aim, hold to draw the bow, release to loose the arrow.<br />Mind the wind! 🌬️</p>
+    </div>
+  </section>
+
+  <!-- How to play -->
+  <section id="screen-how" class="screen dim hidden">
+    <div class="card">
+      <div class="ribbon blue">How to Play</div>
+      <div class="how-list">
+        <p>🖱️ <b>Aim:</b> move your mouse or finger — the bow follows.</p>
+        <p>🏹 <b>Draw:</b> press and hold. The power bar swings — time it!</p>
+        <p>✨ <b>Loose:</b> let go to shoot. Arrows arc with gravity.</p>
+        <p>🌬️ <b>Wind:</b> watch the windsock — it pushes your arrow sideways.</p>
+        <p>⭐ <b>Stars:</b> reach the score goal to pass the round and earn coins.</p>
+        <p>💰 <b>Coins:</b> buy new bows and upgrades in the Armory.</p>
+        <p>⌨️ <b>Keys:</b> arrows to aim, hold Space to draw.</p>
+      </div>
+      <button class="btn big" id="howClose">Got it!</button>
+    </div>
+  </section>
+
+  <!-- Armory -->
+  <section id="screen-armory" class="screen dim hidden">
+    <div class="card up-card">
+      <div class="ribbon">🏹 Armory</div>
+      <p class="sub small">Spend your coins on better gear.</p>
+      <div id="bowList" class="bow-list"></div>
+      <div id="upList" class="up-list"></div>
+      <button class="btn big" id="armoryClose">Done</button>
+    </div>
+  </section>
+
+  <!-- Pause menu -->
+  <section id="screen-menu" class="screen dim hidden">
+    <div class="card small-card">
+      <h2>Paused</h2>
+      <p class="sub" id="stats"></p>
+      <button class="btn big" id="menuResume">▶ Resume</button>
+      <button class="btn alt" id="restartBtn">↻ Restart Round</button>
+      <button class="btn alt" id="armoryBtn2">🏹 Armory</button>
+      <button class="btn alt" id="howBtn2">❓ How to Play</button>
+      <button class="btn alt" id="homeBtn">🏠 Title Screen</button>
+    </div>
+  </section>
+
+  <!-- Round results -->
+  <section id="screen-results" class="screen dim hidden">
+    <div class="card small-card">
+      <div class="big-ico" id="resIcon">🎯</div>
+      <div class="ribbon" id="resTitle">Round 1 complete!</div>
+      <div id="resStars" class="stars"></div>
+      <p class="sub">Score: <b id="resScore">0</b> <span id="resBest" class="best-note"></span></p>
+      <p class="sub coins-earned"><span class="coin-ico"></span> <b id="resCoins">+0</b> coins earned</p>
+      <button class="btn big" id="nextBtn">Next Round ▶</button>
+      <button class="btn alt" id="retryBtn">↻ Try Again</button>
+      <div class="row">
+        <button class="btn alt" id="armoryBtn3">🏹 Armory</button>
+        <button class="btn alt" id="homeBtn2">🏠 Home</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Messages -->
+  <section id="screen-msg" class="screen dim hidden">
+    <div class="card small-card">
+      <div class="big-ico" id="msgIco">🏹</div>
+      <h2 id="msgTitle"></h2>
+      <p id="msgText" class="sub"></p>
+      <button class="btn big" id="msgOk">OK</button>
+    </div>
+  </section>
+
+<script src="../site-extras.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <link rel="icon" href="data:," />
+  <title>Stories by the Fire · Family Deen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Amiri:wght@400;700&display=swap" />
+  <script type="module" crossorigin src="./assets/index-C72rK6Hj.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-B5K6bDGK.css">
+</head>
+<body>
+  <canvas id="scene"></canvas>
+  <div id="paper"></div>
+
+  <div id="hud" class="hidden">
+    <div class="hud-left">
+      <div class="pill" id="talkPill" title="Conversations had"><span>💬</span><b id="talkCount">0</b><small>talks</small></div>
+    </div>
+    <div class="hud-right">
+      <button class="icon-btn" id="trailBtn" aria-label="Story Trail" title="Story Trail">📜</button>
+      <button class="icon-btn" id="voiceBtn" aria-label="Read-aloud voice" title="Read-aloud voice">🗣️</button>
+      <button class="icon-btn" id="muteBtn" aria-label="Sound" title="Sound">🔈</button>
+    </div>
+  </div>
+
+  <!-- the card panel: docked right on landscape, bottom sheet on portrait -->
+  <aside id="panel" class="hidden"></aside>
+
+  <!-- title -->
+  <section id="titleScreen" class="screen">
+    <div class="title-card">
+      <div class="logo"><span class="moon">🌙</span><b>Stories</b> <i>by the Fire</i></div>
+      <p class="tag">A <b>Family Deen</b> storytelling game.<br>A grown-up tells the story, and the child guesses what happens next.</p>
+      <button class="chunky gold" id="continueBtn"></button>
+      <button class="chunky" id="startBtn">Open the Story Trail</button>
+      <button class="link" id="setupBtn">Who's by the fire tonight?</button>
+    </div>
+  </section>
+
+  <!-- setup -->
+  <section id="setupScreen" class="screen dim hidden">
+    <div class="frame small">
+      <div class="ribbon">By the fire tonight</div>
+      <p class="hint">Who is telling the story?</p>
+      <div class="seg" id="parentSeg">
+        <button data-v="baba">Baba</button><button data-v="mama">Mama</button><button data-v="both">Both</button>
+      </div>
+      <p class="hint">Child's name (or names)</p>
+      <input id="childName" maxlength="24" placeholder="e.g. Aisha & Yusuf" autocomplete="off" />
+      <label class="check"><input type="checkbox" id="voiceChk" /> Read-aloud voice for young listeners</label>
+      <button class="chunky" id="setupDone">Light the fire 🔥</button>
+    </div>
+  </section>
+
+  <!-- story trail (timeline) -->
+  <section id="trailScreen" class="screen dim hidden">
+    <div class="frame wide">
+      <div class="ribbon">The Story Trail</div>
+      <p class="stats" id="trailStats"></p>
+      <div class="night" id="trailView">
+        <svg class="trail" id="trailSvg" viewBox="0 0 1000 420" preserveAspectRatio="none"><path id="trailPath" /></svg>
+        <div id="trailNodes"></div>
+      </div>
+      <div class="map-buttons">
+        <button class="chunky gold" id="journalBtn">📓 Family Journal</button>
+        <button class="chunky" id="trailClose">Back to the fire</button>
+      </div>
+      <div id="storyPop" class="pop hidden"></div>
+    </div>
+  </section>
+
+  <!-- journal -->
+  <section id="journalScreen" class="screen dim hidden">
+    <div class="frame">
+      <div class="ribbon">Family Journal</div>
+      <p class="stats" id="journalStats"></p>
+      <div id="journalList"></div>
+      <div class="map-buttons"><button class="chunky" id="journalClose">Back</button></div>
+    </div>
+  </section>
+
+  <!-- cover / pass interstitial -->
+  <section id="cover" class="screen cover hidden">
+    <div class="cover-card">
+      <div class="big-emoji" id="coverEmoji">🙈</div>
+      <h2 id="coverTitle"></h2>
+      <p id="coverText"></p>
+      <button class="chunky" id="coverBtn"></button>
+    </div>
+  </section>
+
+  <div id="fade"></div>
+<script src="../site-extras.js" defer></script>
+</body>
+</html>

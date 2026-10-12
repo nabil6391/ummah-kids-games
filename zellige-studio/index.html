@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#1b2a4a" />
+  <title>Zellige Studio · Islamic Patterns of Light</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet" />
+  <script type="module" crossorigin src="./assets/index-CQ3OraE0.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-B-cNI1eu.css">
+</head>
+<body>
+  <canvas id="scene"></canvas>
+
+  <!-- floating sparkles / confetti layer -->
+  <div id="floats"></div>
+
+  <!-- Always-on top-right toggles -->
+  <div id="topbar">
+    <button id="muteBtn" class="icon-btn" aria-label="Sound" title="Sound">🔊</button>
+  </div>
+
+  <!-- In-game HUD -->
+  <div id="hud" class="hidden">
+    <div class="hud-left">
+      <button id="homeBtn" class="icon-btn" aria-label="Menu" title="Menu">🏠</button>
+      <div class="level-pill"><b id="hudLevel">Level 1</b><small id="hudName">Starburst</small></div>
+      <div class="progress"><div class="bar"><div id="hudBar"></div></div><span id="hudCount">0/0</span></div>
+    </div>
+    <div class="hud-right">
+      <button id="guideBtn" class="icon-btn" aria-label="Show guide" title="Show / hide guide">👻</button>
+      <button id="resetBtn" class="icon-btn" aria-label="Start over" title="Start over">↺</button>
+    </div>
+    <div id="objective"><span>🎨</span><span id="objectiveText">Tap a tile to paint it and its mirror twins!</span></div>
+  </div>
+
+  <!-- Colour palette (in-game) -->
+  <div id="palette" class="hidden"></div>
+
+  <!-- Title -->
+  <section id="screen-title" class="screen">
+    <div class="card title-card">
+      <div class="logo">Zellige <span>Studio</span></div>
+      <div class="tagline">Paint glowing patterns of light ✨</div>
+      <div class="verse">
+        <b>“Verily, Allah is beautiful and loves beauty.”</b>
+        <small>Sahih Muslim 91</small>
+      </div>
+      <button class="btn big" id="titlePlay">Play ▶</button>
+      <div class="row">
+        <button class="btn alt" id="titleGallery">🕌 My Gallery</button>
+        <button class="btn soft" id="titleGrown">👪 Grown-ups</button>
+      </div>
+      <p class="hint">Complete symmetric star patterns the way Muslim artists have for over a thousand years.</p>
+    </div>
+  </section>
+
+  <!-- Level select -->
+  <section id="screen-levels" class="screen hidden">
+    <div class="card levels-card">
+      <div class="ribbon">Choose a pattern</div>
+      <p class="sub">Each one is a real kind of Islamic geometric art.</p>
+      <div class="level-grid" id="levelGrid"></div>
+      <div class="row">
+        <button class="btn alt" id="levelsBack">◀ Home</button>
+        <button class="btn alt" id="levelsGallery">🕌 Gallery</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to play (shown before the first level) -->
+  <section id="screen-how" class="screen dim hidden">
+    <div class="card how-card">
+      <div class="big-ico">🎨</div>
+      <h2 id="howTitle">How to play</h2>
+      <ul class="how-list">
+        <li><b>Pick a colour</b> from the paint pots below.</li>
+        <li><b>Tap a tile.</b> Its mirror twins light up too — that's symmetry!</li>
+        <li>Match the faint <b>ghost guide</b> to finish the pattern.</li>
+        <li>Fill every tile to make the pattern <b>glow</b>. ✨</li>
+      </ul>
+      <p class="hint">Stuck? Tap 💡 for a hint, or 👁 to hide the guide and try from memory.</p>
+      <button class="btn big" id="howStart">Let's paint! ▶</button>
+      <button class="link-btn" id="howBack">◀ Back</button>
+    </div>
+  </section>
+
+  <!-- Pause -->
+  <section id="screen-pause" class="screen dim hidden">
+    <div class="card small-card">
+      <h2>Paused</h2>
+      <button class="btn big" id="resumeBtn">Keep painting ▶</button>
+      <div class="row">
+        <button class="btn alt" id="pauseLevels">🗺️ Patterns</button>
+        <button class="btn alt" id="pauseHome">🏠 Home</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Level complete -->
+  <section id="screen-done" class="screen dim hidden">
+    <div class="card done-card">
+      <div class="ribbon gold" id="doneRibbon">MashaAllah!</div>
+      <div id="doneStars" class="stars"></div>
+      <h2 id="doneName">Starburst</h2>
+      <p class="sub" id="doneNote"></p>
+      <div class="earn" id="doneEarn"></div>
+      <button class="btn big" id="doneNext">Next pattern ▶</button>
+      <div class="row">
+        <button class="btn alt" id="doneAgain">🔁 Again</button>
+        <button class="btn alt" id="doneGallery">🕌 Gallery</button>
+        <button class="btn alt" id="doneLevels">🗺️ Patterns</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="screen-gallery" class="screen dim hidden">
+    <div class="card gallery-card">
+      <div class="ribbon blue">🕌 My Courtyard Wall</div>
+      <p class="sub" id="gallerySub">Every pattern you finish becomes a tile on the wall.</p>
+      <div class="gallery-grid" id="galleryGrid"></div>
+      <div class="row">
+        <button class="btn alt" id="galleryBack">◀ Back</button>
+        <button class="btn soft" id="galleryFree">🎨 Free Studio</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Grown-ups -->
+  <section id="screen-grown" class="screen dim hidden">
+    <div class="card grown-card">
+      <h2>👪 For Grown-ups</h2>
+      <p class="sub"><b>Zellige Studio</b> introduces children (about 5–11) to Islamic geometric art — the
+        star-and-rosette patterns that decorate mosques and madrasas from Morocco to India. Filling a tile also fills
+        its symmetric partners, so children <b>feel</b> rotational &amp; mirror symmetry (the dihedral group D4) while
+        they make something beautiful. There is no way to lose and no timer.</p>
+      <h3>Islamic content &amp; sources</h3>
+      <ul class="sources" id="sourceList"></ul>
+      <p class="sub small">Geometric art is a celebrated, non-figurative Islamic tradition. No living beings are
+        depicted as sacred, and no prophets, angels, Allah or Shaytan are ever shown. Please review with a local
+        scholar if unsure.</p>
+      <div class="settings">
+        <label class="chk"><input type="checkbox" id="motionChk" /> Reduced motion</label>
+        <label class="chk"><input type="checkbox" id="guideChk" checked /> Show ghost guide by default</label>
+      </div>
+      <div class="row">
+        <button class="btn soft" id="resetAll">Reset progress</button>
+        <button class="btn big" id="grownClose">Done ✔</button>
+      </div>
+    </div>
+  </section>
+
+<script src="../site-extras.js" defer></script>
+</body>
+</html>

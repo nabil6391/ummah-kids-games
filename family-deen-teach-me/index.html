@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <link rel="icon" href="data:," />
+  <title>Teach Me, Baba/Mama! · Family Deen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap" />
+  <script type="module" crossorigin src="./assets/index-B1NzCSq_.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BGVKBJE3.css">
+</head>
+<body>
+  <canvas id="scene"></canvas>
+  <div id="paper"></div>
+
+  <div id="hud" class="hidden">
+    <div class="pills">
+      <div class="pill" title="Conversations had"><span>💬</span><b id="convCount">0</b><small>talks</small></div>
+      <button class="pill" id="bookBtn" title="Family Book"><span>📚</span><b id="pageCount">0</b><small>pages</small></button>
+    </div>
+    <div class="hudr">
+      <button class="sq" id="muteBtn" aria-label="Sound">🔊</button>
+      <button class="sq" id="homeBtn" aria-label="Home">🏠</button>
+    </div>
+  </div>
+
+  <section id="title" class="screen hidden">
+    <div class="frame titlecard">
+      <div class="badge">Family Deen</div>
+      <h1 class="logo"><span>Teach Me,</span><em id="logoParent">Baba/Mama</em><span class="bang">!</span></h1>
+      <p class="tag">Swap roles: the child becomes the teacher.<br><i>"If you can teach it, you understand it."</i></p>
+      <div id="titleFamily" class="tfam"></div>
+      <div id="titleButtons" class="tbtns"></div>
+    </div>
+  </section>
+
+  <section id="setup" class="screen hidden">
+    <div class="frame setupcard">
+      <div class="ribbon">Our family</div>
+      <div id="setupBody"></div>
+      <div class="row"><button class="linky" id="setupBack">← Back</button><button class="chunky" id="setupGo">Let's begin! →</button></div>
+    </div>
+  </section>
+
+  <section id="panel" class="panel hidden"></section>
+  <section id="inter" class="screen inter hidden"></section>
+
+  <section id="book" class="screen hidden">
+    <div class="bookwrap">
+      <div class="ribbon">📚 Family Book of Knowledge</div>
+      <div class="btabs">
+        <button class="btab" data-ch="quran" style="--cc:#3f7fb5">📖 Qur'an</button>
+        <button class="btab" data-ch="seerah" style="--cc:#c9803a">🐪 Seerah</button>
+        <button class="btab" data-ch="akhlaq" style="--cc:#d0597a">💛 Akhlaq</button>
+        <button class="btab" data-ch="worship" style="--cc:#3f9a6a">🤲 Worship</button>
+      </div>
+      <div class="book"><div class="page left"></div><div class="page right"></div></div>
+      <div class="booknav"><button class="round bprev" aria-label="Previous page">◀</button><span class="bookcount"></span><button class="round bnext" aria-label="Next page">▶</button><button class="chunky small" id="bookClose">Close</button></div>
+    </div>
+  </section>
+
+<script src="../site-extras.js" defer></script>
+</body>
+</html>

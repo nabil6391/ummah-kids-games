@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#8fd3ff" />
+  <title>Sadaqah Well — water for everyone</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕊️</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Noto+Naskh+Arabic:wght@500;700&display=swap" rel="stylesheet" />
+  <script type="module" crossorigin src="./assets/index-B163XVdy.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-Dl1x2LET.css">
+</head>
+<body>
+  <canvas id="scene"></canvas>
+  <div id="floats" aria-hidden="true"></div>
+  <div id="toasts" aria-live="polite"></div>
+
+  <!-- Top-right buttons -->
+  <div id="topbar">
+    <button id="muteBtn" class="icon-btn" aria-label="Sound" title="Sound">🔊</button>
+    <button id="menuBtn" class="icon-btn hidden" aria-label="Menu" title="Menu">☰</button>
+  </div>
+
+  <!-- Heads-up display -->
+  <section id="hud" class="hidden">
+    <div class="hud-left">
+      <div class="pill coin-pill"><span class="coin"></span><span id="coins">0</span></div>
+      <div class="pill village-pill"><span id="villageName">Al-Safar</span><small id="villageStage">Dig the well 0/4</small></div>
+      <div class="bar"><div class="bar-fill" id="wellBar"></div></div>
+      <div class="bar sadaqah"><div class="bar-fill" id="serveBar"></div></div>
+    </div>
+    <div class="hud-bottom">
+      <div class="objective" id="objective">Take a gift from a donor</div>
+      <div class="carry" id="carryRow"></div>
+    </div>
+  </section>
+
+  <!-- Title -->
+  <section id="screen-title" class="screen">
+    <div class="card title-card">
+      <div class="logo">Sadaqah <span>Well</span></div>
+      <p class="tagline">Build a well, and a village drinks.</p>
+      <p class="tagline small">Sadaqah jariyah — charity that keeps giving.</p>
+      <button class="btn big hidden" id="continueBtn">▶ Continue</button>
+      <button class="btn big" id="newBtn">✨ New village</button>
+      <div class="row">
+        <button class="btn alt" id="titleAbout">ℹ️ For parents</button>
+      </div>
+      <p class="hint">Ages 5–99 · no ads, no music, everything made by hand</p>
+    </div>
+  </section>
+
+  <!-- Intro / how to play -->
+  <section id="screen-intro" class="screen dim hidden">
+    <div class="card intro-card">
+      <div class="ribbon">Bismillah — let us begin</div>
+      <blockquote id="introVerse" class="ar"></blockquote>
+      <p class="verse-en" id="introVerseEn"></p>
+      <p class="source" id="introVerseSrc"></p>
+      <div class="howto">
+        <b>How to play</b>
+        <ul>
+          <li>🎁 Villagers wait under the tent with a gift. Stand with them to take it.</li>
+          <li>💧 Carry the gifts to the <b>well</b> — the well grows a new stage each time.</li>
+          <li>🏺 When the water flows, fill a bucket and carry it to whoever is thirsty.</li>
+          <li>🌾 Spend coins at the <b>sadaqah jar</b> to make everything faster.</li>
+          <li>↔️ Move with the arrow keys / WASD, or drag anywhere on the screen.</li>
+        </ul>
+      </div>
+      <button class="btn big" id="introGo">Start ▶</button>
+    </div>
+  </section>
+
+  <!-- Stage complete card -->
+  <section id="screen-stage" class="screen dim hidden">
+    <div class="card small-card">
+      <div class="big-ico">💧</div>
+      <div class="ribbon" id="stageRibbon">Stage complete</div>
+      <h2 id="stageTitle">The well is deeper</h2>
+      <p class="sub" id="stageText"></p>
+      <button class="btn big" id="stageGo">Carry on ▶</button>
+    </div>
+  </section>
+
+  <!-- Sadaqah jar / upgrades -->
+  <section id="screen-jar" class="screen dim hidden">
+    <div class="card jar-card">
+      <div class="ribbon gold">🏺 Sadaqah jar</div>
+      <p class="sub">Spend your coins so the well gets finished sooner. <b>Every coin is a donation.</b></p>
+      <div class="coin-pill big-pill"><span class="coin"></span><span id="jarCoins">0</span></div>
+      <div class="upgrades" id="upgradeList"></div>
+      <button class="btn big" id="jarClose">Close ✔</button>
+    </div>
+  </section>
+
+  <!-- Village finished -->
+  <section id="screen-village" class="screen dim hidden">
+    <div class="card small-card">
+      <div class="big-ico">🎉</div>
+      <div class="ribbon gold" id="villRibbon">Village blessed</div>
+      <h1 id="villTitle">Al-Safar has water</h1>
+      <p class="sub" id="villText"></p>
+      <blockquote id="villVerse" class="ar small-quote"></blockquote>
+      <p class="verse-en" id="villVerseEn"></p>
+      <p class="source" id="villVerseSrc"></p>
+      <div class="stats" id="villStats"></div>
+      <button class="btn big" id="villGo">Next village ▶</button>
+    </div>
+  </section>
+
+  <!-- Menu -->
+  <section id="screen-menu" class="screen dim hidden">
+    <div class="card small-card">
+      <h2>Menu</h2>
+      <button class="btn big" id="menuResume">▶ Keep playing</button>
+      <button class="btn alt" id="menuHome">🏠 Save &amp; go home</button>
+      <button class="btn alt" id="menuAbout">ℹ️ For parents</button>
+      <button class="btn alt danger" id="menuRestart">↺ Start a new village</button>
+    </div>
+  </section>
+
+  <!-- For parents & teachers -->
+  <section id="screen-about" class="screen dim hidden">
+    <div class="card about-card">
+      <div class="ribbon">For parents &amp; teachers</div>
+      <div class="about-body">
+        <h3>What the game is about</h3>
+        <p>A gentle builder game about <b>sadaqah jariyah</b> — charity that keeps giving after you are gone.
+           Villagers bring gifts, you carry them to the well, and once the water flows you keep the village
+           supplied. Nothing is ever lost by playing slowly, and no one in the game can fail you.</p>
+        <h3>For the youngest players</h3>
+        <p>Walking, carrying and a bright picture is the whole game. There is no losing, no timer that
+           punishes you and no screen full of numbers to read.</p>
+        <h3>Characters</h3>
+        <p>Everyone in the game is an invented cartoon villager: girls and women in hijab and loose clothes,
+           boys and men in kufi or plain clothes. <b>No prophet, companion, angel or any other sacred figure
+           is ever depicted</b> — stories about them are told in words only. There is no violence, no gambling
+           and no music: only quiet, synthesised sound effects you can switch off.</p>
+        <h3>Texts and their sources</h3>
+        <ul class="sources" id="sourceList"></ul>
+        <p>For scholarly review, please check each text with a qualified teacher or scholar.</p>
+      </div>
+      <button class="btn big" id="aboutClose">Close ✔</button>
+    </div>
+  </section>
+
+<script src="../site-extras.js" defer></script>
+</body>
+</html>
