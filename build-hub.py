@@ -154,7 +154,7 @@ footer{{max-width:1400px;margin:0 auto;padding:20px 24px 40px;color:var(--mute);
   {row(SECTIONS["family"][0], SECTIONS["family"][1], [g for g in GAMES if g[4]=="family"], "👨‍👩‍👧")}
   {row("All games", f"{len(GAMES)} games", GAMES, "🗂️")}
   <section id="results"><a href="#" data-filter="" class="back">← Back to all games</a><h2 id="rtitle">Results</h2><div class="grid" id="rgrid"></div><p class="empty" id="empty">No games match that. Try another word.</p></section>
-  <section class="about"><h2>Made for Muslim families</h2><p>Every game is free, works in the browser, and has no sign-in, no ads and no tracking of children. Games with a camera keep the video on your device. Tell us what you think using the 💬 button.</p></section>
+  <section class="about"><h2>Made for Muslim families</h2><p>Every game is free, works in the browser, and has no sign-in and no ads. Games with a camera keep the video on your device. Tell us what you think using the 💬 button.</p></section>
 </main>
 <footer>© Ummah Kids Games · Games for the whole family.</footer>
 <script>
