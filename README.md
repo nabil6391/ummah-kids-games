@@ -17,8 +17,6 @@ lives in its own folder next to this one in `~/StudioProjects/games/`:
 | Modest Style Studio | `/modest-dress-up/` | `modest-dress-up` |
 | Sadaqah Siblings | `/sadaqah-siblings/` | `sadaqah-siblings` |
 | Archery of the Sunnah | `/archery-of-the-sunnah/` | `archery-of-the-sunnah` |
-| Fanoos Nights | `/fanoos-nights/` | `fanoos-nights` |
-| Iftar Grove | `/iftar-grove/` | `iftar-grove` |
 | Zellige Studio | `/zellige-studio/` | `zellige-studio` |
 | Sadaqah Well | `/sadaqah-well/` | `sadaqah-well` |
 | Masjid Makers | `/masjid-maker/` | `masjid-maker` |

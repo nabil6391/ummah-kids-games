@@ -12,7 +12,7 @@ build() { # name, source dir
   (cd "$2" && npx vite build --base=./ --outDir "$HERE/$1" --emptyOutDir --logLevel warn)
 }
 GAMES=(noor-defenders tayyib-treats eid-bazaar-math strong-believer eid-sweets-bakery hajj-journey modest-dress-up sadaqah-siblings
-  archery-of-the-sunnah fanoos-nights iftar-grove zellige-studio sadaqah-well masjid-maker
+  archery-of-the-sunnah zellige-studio sadaqah-well masjid-maker
   family-deen-stories family-deen-detective family-deen-house family-deen-treasure family-deen-teach-me)
 for g in "${GAMES[@]}"; do build "$g" "$KIDS/$g"; done
 build alphabet-moves "$MEDIA/alphabet-moves"

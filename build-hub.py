@@ -15,8 +15,6 @@ GAMES = [
  ("hajj-journey","Hajj Journey","Board","6–12","play",0,"Travel through the stations of Hajj together in a gentle family board game."),
  ("modest-dress-up","Modest Style Studio","Dress up","5–11","play",0,"Help Amina choose modest outfits for Eid, school, the masjid and more."),
  ("sadaqah-siblings","Sadaqah Siblings","Puzzle","6–12","play",0,"Work together to deliver food, water and gifts before iftar."),
- ("fanoos-nights","Fanoos Nights","Adventure","","play",1,"Collect lanterns from the workshop and light up the neighbourhood before Fajr."),
- ("iftar-grove","Iftar Grove","Casual","","play",1,"Share dates and water with your neighbours before the sun sets."),
  ("zellige-studio","Zellige Studio","Puzzle","","play",1,"Paint one tile and its mirror twins light up too. Fill every tile to make the pattern glow."),
  ("sadaqah-well","Sadaqah Well","Sim","5–99","play",1,"Dig a well, build a village and keep the charity flowing. Sadaqah jariyah, one drink at a time."),
  ("masjid-maker","Masjid Makers","Adventure","","play",1,"Travel through time across a world map and build more than 80 real masjids."),
