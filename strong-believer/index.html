@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#16a3a0" />
   <meta name="description" content="Strong Believer — a family-friendly Islamic movement game. Archery, riding, racing and more, played with your real moves." />
   <title>Strong Believer — Sunnah Sports Club</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏹</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2316a3a0' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><path d='M6 4c6 2 10 6 10 12 0 1.5-.3 3-.8 4'/><path d='M6 4l9.2 16'/><path d='M4 20L18 6'/><path d='M15 6h3v3'/></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet" />
-  <script type="module" crossorigin src="./assets/index-CFFgy0C-.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-RwM431rV.css">
+  <script type="module" crossorigin src="./assets/index-BrJWxYaN.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-UlYPkNZ7.css">
 </head>
 <body>
   <canvas id="scene"></canvas>
@@ -18,18 +18,23 @@
 
   <!-- Top bar -->
   <div id="topbar">
-    <button id="homeBtn" class="icon-btn hidden" aria-label="Home">🏠</button>
-    <div class="pill" title="Strength stars"><span>⭐</span><b id="strengthCount">0</b></div>
-    <div class="pill fire" title="Daily streak"><span>🔥</span><b id="streakCount">0</b></div>
-    <button id="muteBtn" class="icon-btn" aria-label="Sound on/off">🔊</button>
+    <button id="homeBtn" class="icon-btn hidden" aria-label="Home"><i data-ic="home"></i></button>
+    <div class="pill gold" title="Strength stars"><i data-ic="star"></i><b id="strengthCount">0</b></div>
+    <div class="pill fire" title="Daily streak"><i data-ic="flame"></i><b id="streakCount">0</b></div>
+    <button id="muteBtn" class="icon-btn" aria-label="Sound on/off"><i data-ic="sound"></i></button>
   </div>
 
   <!-- Home -->
   <section id="screen-home" class="screen side">
     <div class="card home-card">
-      <div class="logo">Strong <span>Believer</span></div>
-      <div class="tagline">Sunnah Sports Club 🏹 🐪 🏃</div>
+      <div class="brand">
+        <span class="brand-ico"><i data-ic="bow"></i></span>
+        <div class="logo">Strong <span>Believer</span></div>
+        <div class="tagline">Sunnah Sports Club</div>
+      </div>
+      <div id="homeStrip" class="act-strip" aria-hidden="true"></div>
       <div class="quote-box">
+        <i data-ic="moon" class="q-ico"></i>
         <blockquote id="homeQuote"></blockquote>
         <div class="source" id="homeSource"></div>
       </div>
@@ -37,8 +42,8 @@
         <div class="label">Pick your player</div>
         <div id="avatarRow" class="avatar-row"></div>
       </div>
-      <button class="btn big" id="homePlay">Let's Move! ▶</button>
-      <div class="safety">⚠️ Make sure you have space around you — ask a grown-up to help!</div>
+      <button class="btn big primary" id="homePlay"><i data-ic="play"></i>Let's Move!</button>
+      <div class="safety"><i data-ic="warn"></i>Make space around you and ask a grown-up to help.</div>
     </div>
   </section>
 
@@ -47,48 +52,56 @@
     <div class="card">
       <div class="ribbon">How do you want to play?</div>
       <div class="choices">
-        <button class="choice" id="modeCamera"><span class="ico">📷</span><b>Camera Moves</b><small>Your real moves control the game. The best way to get strong!</small></button>
-        <button class="choice" id="modeNocam"><span class="ico">👆</span><b>Tap &amp; Keys</b><small>No camera needed. Play with buttons, keys or touch.</small></button>
+        <button class="choice c-teal" id="modeCamera">
+          <span class="ico"><i data-ic="camera"></i></span>
+          <b>Camera Moves</b>
+          <small>Your real moves control the game. The best way to get strong!</small>
+        </button>
+        <button class="choice c-orange" id="modeNocam">
+          <span class="ico"><i data-ic="tap"></i></span>
+          <b>Tap &amp; Keys</b>
+          <small>No camera needed. Play with buttons, keys or touch.</small>
+        </button>
       </div>
-      <div class="safety">⚠️ Clear some space, move furniture away, and ask a grown-up to watch.</div>
-      <button class="btn alt" id="modeBack">◀ Back</button>
+      <div class="safety"><i data-ic="warn"></i>Clear some space, move furniture away, and ask a grown-up to watch.</div>
+      <div class="row"><button class="btn alt" id="modeBack"><i data-ic="back"></i>Back</button></div>
     </div>
   </section>
 
   <!-- Camera privacy -->
   <section id="screen-privacy" class="screen dim hidden">
     <div class="card">
-      <div class="big-ico">🔒📷</div>
+      <div class="hero-portrait"><img id="privacyPortrait" alt="" /><span class="badge teal"><i data-ic="lock"></i></span></div>
       <h2>Your camera stays private</h2>
-      <ul class="privacy-list">
-        <li><span>✅</span><div>Your video <b>never leaves this device</b>. It is not recorded, saved or sent anywhere.</div></li>
-        <li><span>✅</span><div>The game only looks at <b>where your arms and legs are</b> to count your moves.</div></li>
-        <li><span>✅</span><div>You can switch back to tap &amp; keys any time.</div></li>
+      <ul class="fact-list">
+        <li><span class="fact-ico c-teal"><i data-ic="lock"></i></span><div>Your video <b>never leaves this device</b>. It is not recorded, saved or sent anywhere.</div></li>
+        <li><span class="fact-ico c-purple"><i data-ic="stretch"></i></span><div>The game only looks at <b>where your arms and legs are</b> to count your moves.</div></li>
+        <li><span class="fact-ico c-orange"><i data-ic="tap"></i></span><div>You can switch back to tap &amp; keys any time.</div></li>
       </ul>
-      <div class="grownup">👪 <b>Grown-ups:</b> your browser will ask to use the camera. Please check there's room to move safely.</div>
-      <button class="btn big" id="privacyOk">Turn on camera 📷</button>
-      <div class="row"><button class="btn alt" id="privacyNocam">Play without camera 👆</button></div>
+      <div class="grownup"><i data-ic="grownup"></i><div><b>Grown-ups:</b> your browser will ask to use the camera. Please check there's room to move safely.</div></div>
+      <button class="btn big primary" id="privacyOk"><i data-ic="camera"></i>Turn on camera</button>
+      <div class="row"><button class="btn alt" id="privacyNocam"><i data-ic="tap"></i>Play without camera</button></div>
     </div>
   </section>
 
   <!-- Loading -->
   <section id="screen-loading" class="screen dim hidden">
     <div class="card small-card">
-      <div class="spinner"></div>
+      <div class="hero-portrait spin"><img id="loadingPortrait" alt="" /><span class="ring"></span></div>
       <h2 id="loadingText">Waking up the pose helper…</h2>
       <p class="sub" id="loadingSub">This can take a few seconds the first time.</p>
-      <button class="btn alt small" id="loadingNocam">Play without camera instead</button>
+      <button class="btn alt small" id="loadingNocam"><i data-ic="tap"></i>Play without camera instead</button>
     </div>
   </section>
 
   <!-- Friendly error -->
   <section id="screen-error" class="screen dim hidden">
     <div class="card">
-      <div class="big-ico" id="errIco">🙈</div>
+      <div class="hero-portrait"><img id="errPortrait" alt="" /><span class="badge coral" id="errBadge"><i data-ic="eyeOff"></i></span></div>
       <h2 id="errTitle">Oops</h2>
       <p id="errText" class="err-text"></p>
-      <button class="btn big" id="errRetry">Try again 🔄</button>
-      <div class="row"><button class="btn alt" id="errNocam">Play without camera 👆</button></div>
+      <button class="btn big primary" id="errRetry"><i data-ic="replay"></i>Try again</button>
+      <div class="row"><button class="btn alt" id="errNocam"><i data-ic="tap"></i>Play without camera</button></div>
     </div>
   </section>
 
@@ -96,39 +109,54 @@
   <section id="screen-hub" class="screen dim hidden">
     <div class="card hub-card">
       <div class="hub-head">
+        <button class="player-chip" id="playerChip" title="Change player"><img id="playerPortrait" alt="" /><span><small>Player</small><b id="playerName">Rayyan</b></span></button>
         <div class="logo small">Strong <span>Believer</span></div>
-        <button class="mode-chip" id="modeChip">📷 Camera</button>
+        <button class="mode-chip" id="modeChip"><i data-ic="camera"></i><span>Camera</span><small>change</small></button>
       </div>
       <div class="hub-stats">
-        <div class="stat"><span>🔥</span><b id="hubStreak">0</b><small>day streak</small></div>
-        <div class="stat"><span>⭐</span><b id="hubStrength">0</b><small>strength stars</small></div>
-        <div class="stat"><span>✅</span><b id="hubToday">0</b><small>done today</small></div>
+        <div class="stat c-coral"><i data-ic="flame"></i><b id="hubStreak">0</b><small>day streak</small></div>
+        <div class="stat c-gold"><i data-ic="star"></i><b id="hubStrength">0</b><small>strength stars</small></div>
+        <div class="stat c-green"><i data-ic="check"></i><b id="hubToday">0</b><small>done today</small></div>
       </div>
       <div id="activityGrid" class="activity-grid"></div>
       <p class="streak-tip" id="hubTip"></p>
     </div>
   </section>
 
-  <!-- Activity intro: hadith/verse card + how to play -->
+  <!-- Activity intro: picture, verse, the move to copy -->
   <section id="screen-intro" class="screen dim hidden">
     <div class="card intro-card">
-      <div class="intro-title"><span id="introIcon">🏹</span><h2 id="introName">Activity</h2></div>
-      <div class="content-card">
-        <div class="kind" id="introKind">🌙 Hadith</div>
-        <blockquote id="introText"></blockquote>
-        <div class="source" id="introSource"></div>
-        <div class="explain"><b>What does it mean?</b><p id="introMeaning"></p></div>
+      <div class="intro-hero">
+        <img id="introThumb" alt="" />
+        <div class="intro-hero-text">
+          <span class="intro-kicker" id="introBlurb"></span>
+          <h2 id="introName">Activity</h2>
+          <span class="mode-tag" id="introMode"></span>
+        </div>
       </div>
-      <div class="howto">
-        <div class="howto-head"><b>How to play</b><span id="introMode" class="mode-tag"></span></div>
-        <ul id="introHow"></ul>
+      <div class="intro-body">
+        <div class="content-card">
+          <div class="kind" id="introKind"><i data-ic="moon"></i><span>Hadith</span></div>
+          <blockquote id="introText"></blockquote>
+          <div class="source" id="introSource"></div>
+          <div class="explain"><b>What does it mean?</b><p id="introMeaning"></p></div>
+        </div>
+        <div class="howto">
+          <div class="move-loop"><img id="introLoop" alt="" /><span>Copy Zaki!</span></div>
+          <div class="steps">
+            <div class="howto-head"><b>How to play</b></div>
+            <ol id="introHow"></ol>
+            <div id="mountPick" class="mount-pick hidden">
+              <button class="mount-btn" data-mount="camel"><img alt="" /><b>Camel</b></button>
+              <button class="mount-btn" data-mount="horse"><img alt="" /><b>Horse</b></button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div id="mountPick" class="mount-pick hidden">
-        <button class="choice mini" data-mount="camel"><span class="ico">🐪</span><b>Camel</b></button>
-        <button class="choice mini" data-mount="horse"><span class="ico">🐎</span><b>Horse</b></button>
+      <div class="intro-actions">
+        <button class="btn alt" id="introBack"><i data-ic="back"></i>Back</button>
+        <button class="btn big" id="introStart"><i data-ic="play"></i>Start</button>
       </div>
-      <button class="btn big" id="introStart">Start ▶</button>
-      <div class="row"><button class="btn alt" id="introBack">◀ Back</button></div>
     </div>
   </section>
 
@@ -136,12 +164,12 @@
   <section id="screen-ready" class="screen ready-screen hidden">
     <div class="ready-card">
       <h2 id="readyTitle">Get ready!</h2>
-      <p id="readyMsg">We can't see you yet — stand in front of the camera! 🙂</p>
+      <p id="readyMsg">We can't see you yet — stand in front of the camera!</p>
       <div class="ready-bar"><div id="readyBar"></div></div>
-      <p class="sub">Stand back so your whole body fits inside the box. Make sure there's space around you!</p>
+      <p class="sub">Stand back so your whole body fits inside the box.</p>
       <div class="row">
-        <button class="btn alt small" id="readyPause">◀ Back</button>
-        <button class="btn alt small" id="readyNocam">Play without camera</button>
+        <button class="btn alt small" id="readyPause"><i data-ic="back"></i>Back</button>
+        <button class="btn alt small" id="readyNocam"><i data-ic="tap"></i>Play without camera</button>
       </div>
     </div>
   </section>
@@ -155,8 +183,8 @@
       <div class="hud-reps"><b id="hudReps">0</b><span id="hudRepLabel">reps</span></div>
       <div class="hud-big hidden" id="hudBig"></div>
       <div class="hud-spacer"></div>
-      <div class="timer" id="hudTimer">60</div>
-      <button class="icon-btn" id="pauseBtn" aria-label="Pause">⏸</button>
+      <div class="timer" id="hudTimer"><svg viewBox="0 0 40 40" aria-hidden="true"><circle class="track" cx="20" cy="20" r="17"/><circle class="arc" id="hudTimerArc" cx="20" cy="20" r="17"/></svg><b id="hudTimerText">60</b></div>
+      <button class="icon-btn" id="pauseBtn" aria-label="Pause"><i data-ic="pause"></i></button>
     </div>
     <div class="hud-prompt-wrap">
       <div class="hud-prompt" id="hudPrompt"></div>
@@ -166,39 +194,46 @@
         <div class="meter"><div id="hudMeter"></div><div id="hudRival" class="rival-dot hidden">Z</div></div>
       </div>
     </div>
-    <div class="vis-banner hidden" id="visBanner"></div>
+    <div class="vis-banner hidden" id="visBanner"><i data-ic="eyeOff"></i><span id="visBannerText"></span></div>
     <div class="controls" id="controls"></div>
   </section>
 
   <!-- Mirrored camera picture-in-picture with skeleton -->
   <div id="pip" class="hidden">
-    <video id="video" playsinline muted></video>
-    <canvas id="pipCanvas"></canvas>
-    <div class="pip-badge">🔒 stays on this device</div>
+    <video id="video" playsinline muted aria-label="Your camera, mirrored"></video>
+    <canvas id="pipCanvas" aria-label="Body tracking overlay"></canvas>
+    <div class="pip-badge"><i data-ic="lock"></i>stays on this device</div>
   </div>
 
   <!-- Pause -->
   <section id="screen-pause" class="screen dim hidden">
     <div class="card small-card">
-      <h2>Paused ⏸</h2>
-      <p class="sub">Take a breath. Drink some water! 💧</p>
-      <button class="btn big" id="resumeBtn">Resume ▶</button>
-      <div class="row"><button class="btn alt" id="quitBtn">Leave activity</button></div>
+      <div class="hero-portrait"><img id="pausePortrait" alt="" /><span class="badge blue"><i data-ic="water"></i></span></div>
+      <h2>Paused</h2>
+      <p class="sub">Take a breath. Drink some water!</p>
+      <div class="tiles">
+        <button class="tile c-teal" id="resumeBtn"><i data-ic="play"></i><b>Resume</b></button>
+        <button class="tile c-blue" id="quitBtn"><i data-ic="home"></i><b>Leave</b></button>
+      </div>
     </div>
   </section>
 
   <!-- Results -->
   <section id="screen-result" class="screen dim hidden">
     <div class="card result-card">
+      <div class="result-top">
+        <div class="medal" id="resMedal"></div>
+        <div class="result-portrait"><img id="resPortrait" alt="" /></div>
+      </div>
       <h1 id="resTitle">Great job!</h1>
       <div id="resStars" class="stars"></div>
       <ul id="resLines" class="res-lines"></ul>
       <div class="earn" id="resEarn"></div>
       <div class="reminder" id="resReminder"></div>
-      <button class="btn big" id="resNext">Next ▶</button>
+      <button class="btn big primary next-btn" id="resNext"><img id="resNextThumb" alt="" /><span id="resNextText">Next</span><i data-ic="next"></i></button>
       <div class="row">
-        <button class="btn alt" id="resAgain">🔄 Again</button>
-        <button class="btn alt" id="resHub">🏠 Menu</button>
+        <button class="btn alt" id="resAgain"><i data-ic="replay"></i>Again</button>
+        <button class="btn alt" id="resHub"><i data-ic="home"></i>Menu</button>
       </div>
     </div>
   </section>

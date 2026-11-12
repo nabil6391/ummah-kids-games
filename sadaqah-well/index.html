@@ -9,13 +9,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Noto+Naskh+Arabic:wght@500;700&display=swap" rel="stylesheet" />
-  <script type="module" crossorigin src="./assets/index-B163XVdy.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-Dl1x2LET.css">
+  <script type="module" crossorigin src="./assets/index-YcmylzhU.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-Clb5UJb8.css">
 </head>
 <body>
   <canvas id="scene"></canvas>
   <div id="floats" aria-hidden="true"></div>
   <div id="toasts" aria-live="polite"></div>
+  <div id="confetti" aria-hidden="true"></div>
 
   <!-- Top-right buttons -->
   <div id="topbar">
@@ -39,14 +40,15 @@
 
   <!-- Title -->
   <section id="screen-title" class="screen">
-    <div class="card title-card">
+    <div class="card title-card stagger">
+      <div class="hero"><img id="heroImg" class="thumb hero-img hidden" alt="" /><span class="hero-fallback">💧</span></div>
       <div class="logo">Sadaqah <span>Well</span></div>
       <p class="tagline">Build a well, and a village drinks.</p>
       <p class="tagline small">Sadaqah jariyah — charity that keeps giving.</p>
-      <button class="btn big hidden" id="continueBtn">▶ Continue</button>
-      <button class="btn big" id="newBtn">✨ New village</button>
+      <button class="btn big hidden" id="continueBtn"><span class="bico">▶</span> Continue</button>
+      <button class="btn big" id="newBtn"><span class="bico">✨</span> New village</button>
       <div class="row">
-        <button class="btn alt" id="titleAbout">ℹ️ For parents</button>
+        <button class="btn alt" id="titleAbout"><span class="bico">👪</span> For parents</button>
       </div>
       <p class="hint">Ages 5–99 · no ads, no music, everything made by hand</p>
     </div>
@@ -54,51 +56,51 @@
 
   <!-- Intro / how to play -->
   <section id="screen-intro" class="screen dim hidden">
-    <div class="card intro-card">
+    <div class="card intro-card stagger">
       <div class="ribbon">Bismillah — let us begin</div>
       <blockquote id="introVerse" class="ar"></blockquote>
       <p class="verse-en" id="introVerseEn"></p>
       <p class="source" id="introVerseSrc"></p>
       <div class="howto">
         <b>How to play</b>
-        <ul>
-          <li>🎁 Villagers wait under the tent with a gift. Stand with them to take it.</li>
-          <li>💧 Carry the gifts to the <b>well</b> — the well grows a new stage each time.</li>
-          <li>🏺 When the water flows, fill a bucket and carry it to whoever is thirsty.</li>
-          <li>🌾 Spend coins at the <b>sadaqah jar</b> to make everything faster.</li>
-          <li>↔️ Move with the arrow keys / WASD, or drag anywhere on the screen.</li>
-        </ul>
+        <div class="steps">
+          <div class="step s-pink"><span class="num">1</span><img class="thumb hidden" data-step="tent" alt="" /><span class="fb">🎁</span><small>Take a gift from a villager under the tent</small></div>
+          <div class="step s-teal"><span class="num">2</span><img class="thumb hidden" data-step="well" alt="" /><span class="fb">💧</span><small>Carry gifts to the well — it grows each time</small></div>
+          <div class="step s-blue"><span class="num">3</span><img class="thumb hidden" data-step="bucket" alt="" /><span class="fb">🏺</span><small>When water flows, fill a bucket for the thirsty</small></div>
+          <div class="step s-gold"><span class="num">4</span><img class="thumb hidden" data-step="jar" alt="" /><span class="fb">🌾</span><small>Spend coins at the sadaqah jar to go faster</small></div>
+          <div class="step s-green"><span class="num">5</span><img class="thumb hidden" data-step="move" alt="" /><span class="fb">↔️</span><small>Arrow keys / WASD, or drag anywhere</small></div>
+        </div>
       </div>
-      <button class="btn big" id="introGo">Start ▶</button>
+      <button class="btn big" id="introGo"><span class="bico">▶</span> Start</button>
     </div>
   </section>
 
   <!-- Stage complete card -->
   <section id="screen-stage" class="screen dim hidden">
-    <div class="card small-card">
-      <div class="big-ico">💧</div>
+    <div class="card small-card stage-card stagger">
+      <div class="pic pic-teal"><img id="stageImg" class="thumb hidden" alt="" /><span class="big-ico fb">💧</span></div>
       <div class="ribbon" id="stageRibbon">Stage complete</div>
       <h2 id="stageTitle">The well is deeper</h2>
       <p class="sub" id="stageText"></p>
-      <button class="btn big" id="stageGo">Carry on ▶</button>
+      <button class="btn big" id="stageGo"><span class="bico">▶</span> Carry on</button>
     </div>
   </section>
 
   <!-- Sadaqah jar / upgrades -->
   <section id="screen-jar" class="screen dim hidden">
-    <div class="card jar-card">
+    <div class="card jar-card stagger">
       <div class="ribbon gold">🏺 Sadaqah jar</div>
       <p class="sub">Spend your coins so the well gets finished sooner. <b>Every coin is a donation.</b></p>
       <div class="coin-pill big-pill"><span class="coin"></span><span id="jarCoins">0</span></div>
       <div class="upgrades" id="upgradeList"></div>
-      <button class="btn big" id="jarClose">Close ✔</button>
+      <button class="btn big" id="jarClose"><span class="bico">✔</span> Close</button>
     </div>
   </section>
 
   <!-- Village finished -->
   <section id="screen-village" class="screen dim hidden">
-    <div class="card small-card">
-      <div class="big-ico">🎉</div>
+    <div class="card small-card vill-card stagger">
+      <div class="pic pic-gold"><img id="villImg" class="thumb hidden" alt="" /><span class="big-ico fb">🎉</span><div class="sparkles" aria-hidden="true"><i>⭐</i><i>✨</i><i>⭐</i></div></div>
       <div class="ribbon gold" id="villRibbon">Village blessed</div>
       <h1 id="villTitle">Al-Safar has water</h1>
       <p class="sub" id="villText"></p>
@@ -106,25 +108,27 @@
       <p class="verse-en" id="villVerseEn"></p>
       <p class="source" id="villVerseSrc"></p>
       <div class="stats" id="villStats"></div>
-      <button class="btn big" id="villGo">Next village ▶</button>
+      <button class="btn big" id="villGo"><span class="bico">▶</span> Next village</button>
     </div>
   </section>
 
   <!-- Menu -->
   <section id="screen-menu" class="screen dim hidden">
-    <div class="card small-card">
-      <h2>Menu</h2>
-      <button class="btn big" id="menuResume">▶ Keep playing</button>
-      <button class="btn alt" id="menuHome">🏠 Save &amp; go home</button>
-      <button class="btn alt" id="menuAbout">ℹ️ For parents</button>
-      <button class="btn alt danger" id="menuRestart">↺ Start a new village</button>
+    <div class="card small-card menu-card stagger">
+      <div class="ribbon">⏸ Paused</div>
+      <div class="tiles">
+        <button class="tile t-green" id="menuResume"><span class="tico">▶</span>Keep playing</button>
+        <button class="tile t-blue" id="menuHome"><span class="tico">🏠</span>Save &amp; go home</button>
+        <button class="tile t-teal" id="menuAbout"><span class="tico">👪</span>For parents</button>
+        <button class="tile t-red" id="menuRestart"><span class="tico">↺</span>Start a new village</button>
+      </div>
     </div>
   </section>
 
   <!-- For parents & teachers -->
   <section id="screen-about" class="screen dim hidden">
-    <div class="card about-card">
-      <div class="ribbon">For parents &amp; teachers</div>
+    <div class="card about-card stagger">
+      <div class="ribbon">👪 For parents &amp; teachers</div>
       <div class="about-body">
         <h3>What the game is about</h3>
         <p>A gentle builder game about <b>sadaqah jariyah</b> — charity that keeps giving after you are gone.
@@ -142,7 +146,7 @@
         <ul class="sources" id="sourceList"></ul>
         <p>For scholarly review, please check each text with a qualified teacher or scholar.</p>
       </div>
-      <button class="btn big" id="aboutClose">Close ✔</button>
+      <button class="btn big" id="aboutClose"><span class="bico">✔</span> Close</button>
     </div>
   </section>
 

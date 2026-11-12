@@ -7,8 +7,8 @@
   <title>Stories by the Fire · Family Deen</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Amiri:wght@400;700&display=swap" />
-  <script type="module" crossorigin src="./assets/index-C72rK6Hj.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-B5K6bDGK.css">
+  <script type="module" crossorigin src="./assets/index-ChK0Iuep.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DdL83T9m.css">
 </head>
 <body>
   <canvas id="scene"></canvas>
@@ -31,7 +31,8 @@
   <!-- title -->
   <section id="titleScreen" class="screen">
     <div class="title-card">
-      <div class="logo"><span class="moon">🌙</span><b>Stories</b> <i>by the Fire</i></div>
+      <div id="titleHero" class="dkhero dk-night"></div>
+      <div class="logo"><b>Stories</b> <i>by the Fire</i></div>
       <p class="tag">A <b>Family Deen</b> storytelling game.<br>A grown-up tells the story, and the child guesses what happens next.</p>
       <button class="chunky gold" id="continueBtn"></button>
       <button class="chunky" id="startBtn">Open the Story Trail</button>
@@ -44,12 +45,12 @@
     <div class="frame small">
       <div class="ribbon">By the fire tonight</div>
       <p class="hint">Who is telling the story?</p>
-      <div class="seg" id="parentSeg">
+      <div class="dkavs" id="parentSeg">
         <button data-v="baba">Baba</button><button data-v="mama">Mama</button><button data-v="both">Both</button>
       </div>
       <p class="hint">Child's name (or names)</p>
       <input id="childName" maxlength="24" placeholder="e.g. Aisha & Yusuf" autocomplete="off" />
-      <label class="check"><input type="checkbox" id="voiceChk" /> Read-aloud voice for young listeners</label>
+      <label class="check dkswitch"><input type="checkbox" id="voiceChk" /> Read-aloud voice for young listeners</label>
       <button class="chunky" id="setupDone">Light the fire 🔥</button>
     </div>
   </section>

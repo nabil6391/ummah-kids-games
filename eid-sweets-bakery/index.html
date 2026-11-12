@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet" />
-  <script type="module" crossorigin src="./assets/index-SJkzCDrL.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-DxwDJENo.css">
+  <script type="module" crossorigin src="./assets/index-BpTLJHGg.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-Qu92KWBq.css">
 </head>
 <body>
   <canvas id="scene"></canvas>
@@ -28,13 +28,14 @@
   <!-- Title -->
   <section id="screen-title" class="screen bottom">
     <div class="card title-card">
+      <div class="hero-treats" id="heroTreats" aria-hidden="true"></div>
       <div class="logo">Eid <span>Sweets</span> Bakery</div>
       <p class="tag">Bake, decorate and share yummy treats for Eid! 🌙</p>
       <div class="menu-grid">
-        <button class="menu-btn pink" id="tOrders"><span class="ico">📋</span><b>Orders</b><small>Bake for the neighbours</small></button>
-        <button class="menu-btn gold" id="tFree"><span class="ico">🧁</span><b>Free Bake</b><small>Make anything you like</small></button>
-        <button class="menu-btn blue" id="tBook"><span class="ico">📖</span><b>Bakery Book</b><small>Your saved treats</small></button>
-        <button class="menu-btn mint" id="tKitchen"><span class="ico">🎨</span><b>My Kitchen</b><small>Colours &amp; style</small></button>
+        <button class="menu-btn pink" id="tOrders"><span class="ico" data-thumb="person:maryam">📋</span><b>Orders</b><small>Bake for the neighbours</small></button>
+        <button class="menu-btn gold" id="tFree"><span class="ico" data-thumb="recipe:cupcakes">🧁</span><b>Free Bake</b><small>Make anything you like</small></button>
+        <button class="menu-btn blue" id="tBook"><span class="ico" data-thumb="book">📖</span><b>Bakery Book</b><small>Your saved treats</small></button>
+        <button class="menu-btn mint" id="tKitchen"><span class="ico" data-thumb="theme">🎨</span><b>My Kitchen</b><small>Colours &amp; style</small></button>
       </div>
       <button class="link-btn" id="tGrown">For grown-ups ℹ️</button>
     </div>
@@ -90,7 +91,8 @@
   <!-- Result -->
   <section id="screen-result" class="screen dim">
     <div class="card result-card">
-      <h1 id="resTitle">Alhamdulillah!</h1>
+      <h1 id="resTitle" class="res-title">Alhamdulillah!</h1>
+      <div class="made"><img id="resTreat" alt="Your treats" /></div>
       <div class="thanks">
         <img id="resFace" alt="" />
         <div class="speech" id="resThanks"></div>

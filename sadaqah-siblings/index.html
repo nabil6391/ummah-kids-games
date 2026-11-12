@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-  <meta name="theme-color" content="#7fd3ff" />
+  <meta name="theme-color" content="#5aa7e6" />
   <title>Sadaqah Siblings</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📦</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%232bb673'/><path d='M20 26h24v18a6 6 0 0 1-6 6H26a6 6 0 0 1-6-6z' fill='%23ffc93c'/><path d='M18 20h28v6H18z' fill='%23fff'/></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet" />
-  <script type="module" crossorigin src="./assets/index-DVgsYEMS.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-DFj3-4xM.css">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <script type="module" crossorigin src="./assets/index-CsJa861y.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-C9Ys40zx.css">
 </head>
 <body>
   <canvas id="scene"></canvas>
@@ -18,26 +18,28 @@
 
   <!-- Top bar (menus) -->
   <div id="topbar">
-    <button id="muteBtn" class="icon-btn" aria-label="Sound on or off">🔊</button>
+    <button id="muteBtn" class="icon-btn" aria-label="Sound on or off"><i data-ic="sound"></i></button>
   </div>
 
   <!-- Title -->
   <section id="screen-title" class="screen">
     <div class="card title-card">
-      <div class="logo">Sadaqah <span>Siblings</span></div>
-      <div class="tagline">🌙 A Ramadan teamwork adventure for two 🌙</div>
       <div class="cast">
-        <div class="who zaid"><b>Zaid</b><small>Player 1</small></div>
-        <div class="heart">💛</div>
-        <div class="who amina"><b>Amina</b><small>Player 2</small></div>
+        <div class="cast-who zaid"><img id="titleZaid" alt="" /><b>Zaid</b></div>
+        <div class="brand">
+          <div class="brand-ico"><i data-ic="jar"></i></div>
+          <div class="logo">Sadaqah <span>Siblings</span></div>
+          <div class="tagline">A Ramadan teamwork adventure</div>
+        </div>
+        <div class="cast-who amina"><img id="titleAmina" alt="" /><b>Amina</b></div>
       </div>
       <div class="title-buttons">
-        <button class="btn big" id="playDuo">👫 Play Together</button>
-        <button class="btn alt" id="playSolo">🧒 Play Solo <small>(with a helper)</small></button>
+        <button class="btn big primary" id="playDuo"><i data-ic="together"></i>Play Together<small>two players, one screen</small></button>
+        <button class="btn big alt" id="playSolo"><i data-ic="solo"></i>Play Solo<small>your sibling helps you</small></button>
       </div>
       <div class="row">
-        <button class="btn soft" id="titleHowTo">❓ How to Play</button>
-        <button class="btn soft" id="titleGrownUps">⚙️ Grown-ups</button>
+        <button class="btn soft" id="titleHowTo"><i data-ic="question"></i>How to Play</button>
+        <button class="btn soft" id="titleGrownUps"><i data-ic="grownup"></i>Grown-ups</button>
       </div>
       <div class="jar-row" id="titleJar"></div>
     </div>
@@ -45,58 +47,41 @@
 
   <!-- Solo: pick your sibling -->
   <section id="screen-solo" class="screen hidden dim">
-    <div class="card small-card">
-      <div class="ribbon">🧒 Play Solo</div>
-      <p class="sub">Who do you want to be? Your sibling will follow you and help!</p>
+    <div class="card pick-card">
+      <div class="ribbon c-blue"><i data-ic="solo"></i>Play Solo</div>
+      <h2>Who do you want to be?</h2>
+      <p class="sub">Your sibling follows you and helps.</p>
       <div class="pick">
-        <button class="choice zaid" id="soloZaid"><span class="ico">🧢</span><b>Zaid</b><small>Big brother</small></button>
-        <button class="choice amina" id="soloAmina"><span class="ico">🧕</span><b>Amina</b><small>Big sister</small></button>
+        <button class="choice zaid" id="soloZaid"><img id="pickZaid" alt="" /><b>Zaid</b><small>Big brother</small><span class="chip"><i data-ic="hand"></i>Amina helps</span></button>
+        <button class="choice amina" id="soloAmina"><img id="pickAmina" alt="" /><b>Amina</b><small>Big sister</small><span class="chip"><i data-ic="hand"></i>Zaid helps</span></button>
       </div>
-      <p class="hint">Use WASD or the arrow keys. Grab with E, / or Enter.</p>
-      <button class="btn alt" id="soloBack">◀ Back</button>
+      <p class="hint"><i data-ic="keys"></i> WASD or arrows to move, <kbd>E</kbd> or <kbd>Enter</kbd> to grab</p>
+      <button class="btn soft" id="soloBack"><i data-ic="back"></i>Back</button>
     </div>
   </section>
 
   <!-- How to play -->
   <section id="screen-howto" class="screen hidden dim">
     <div class="card howto-card">
-      <div class="ribbon">❓ How to Play</div>
-      <p class="sub">Work <b>together</b> to bring Sadaqah (gifts of kindness) to every neighbour before the sun sets for iftar!</p>
-      <div class="players">
-        <div class="pcard zaid" id="howZaid">
-          <div class="pname">🧢 Zaid</div>
-          <div class="keys"><span class="kb">W</span><span class="kb">A</span><span class="kb">S</span><span class="kb">D</span> move</div>
-          <div class="keys"><span class="kb">E</span> grab / give / toss</div>
-          <div class="touchnote">📱 Left side of the screen</div>
-        </div>
-        <div class="pcard amina" id="howAmina">
-          <div class="pname">🧕 Amina</div>
-          <div class="keys"><span class="kb">↑</span><span class="kb">←</span><span class="kb">↓</span><span class="kb">→</span> move</div>
-          <div class="keys"><span class="kb">/</span> or <span class="kb">Enter</span> grab / give / toss</div>
-          <div class="touchnote">📱 Right side of the screen</div>
-        </div>
-      </div>
-      <div class="mechanics">
-        <div><span>📦</span><b>Big boxes</b> need BOTH of you. Grab a side each and walk the same way.</div>
-        <div><span>🔵</span><b>Buttons</b> open gates while someone stands on them.</div>
-        <div><span>🏗️</span><b>Lifts</b> go up while someone stands on the green button.</div>
-        <div><span>🪵</span><b>Fences</b>: stand next to one and press grab to toss a parcel over.</div>
-        <div><span>🐱</span><b>Sleepy cats</b> move once you give them water. Be kind to animals!</div>
-        <div><span>🌅</span><b>Sunset</b>: finish before iftar for ⭐⭐⭐. Being late is okay!</div>
-      </div>
-      <button class="btn big" id="howtoOk">Got it! ▶</button>
+      <div class="ribbon c-gold"><i data-ic="question"></i>How to Play</div>
+      <p class="sub">Bring Sadaqah, gifts of kindness, to every neighbour <b>together</b> before the sun sets for iftar.</p>
+      <div class="steps" id="howSteps"></div>
+      <div class="players" id="howPlayers"></div>
+      <button class="btn big primary" id="howtoOk"><i data-ic="check"></i>Got it!</button>
     </div>
   </section>
 
   <!-- Grown-ups -->
   <section id="screen-grown" class="screen hidden dim">
     <div class="card small-card">
-      <div class="ribbon">⚙️ For Grown-ups</div>
-      <label class="toggle"><input type="checkbox" id="swapToggle" /> <span>Swap controls (WASD / left side plays <b>Amina</b>)</span></label>
-      <label class="toggle"><input type="checkbox" id="touchToggle" /> <span>Always show touch controls</span></label>
-      <p class="sub small">No ads, no chat, no accounts. Progress is saved on this device only.</p>
-      <button class="btn danger" id="resetBtn">Reset progress</button>
-      <button class="btn big" id="grownBack">Done ✔</button>
+      <div class="ribbon c-purple"><i data-ic="grownup"></i>For Grown-ups</div>
+      <label class="switch-row c-pink"><span class="sw-ico"><i data-ic="swap"></i></span><span class="sw-text"><b>Swap controls</b><small>WASD / left side plays Amina</small></span><input type="checkbox" id="swapToggle" /><span class="sw"></span></label>
+      <label class="switch-row c-blue"><span class="sw-ico"><i data-ic="touch"></i></span><span class="sw-text"><b>Always show touch controls</b><small>Joysticks on, even with a keyboard</small></span><input type="checkbox" id="touchToggle" /><span class="sw"></span></label>
+      <div class="note"><i data-ic="shield"></i><span>No ads, no chat, no accounts. Progress is saved on this device only.</span></div>
+      <div class="row">
+        <button class="btn soft danger" id="resetBtn"><i data-ic="trash"></i>Reset progress</button>
+        <button class="btn primary" id="grownBack"><i data-ic="check"></i>Done</button>
+      </div>
     </div>
   </section>
 
@@ -104,9 +89,9 @@
   <section id="screen-select" class="screen hidden">
     <div class="card select-card">
       <div class="select-head">
-        <button class="btn soft small" id="selectBack">◀</button>
+        <button class="icon-btn" id="selectBack" aria-label="Back"><i data-ic="back"></i></button>
         <div class="logo small">Choose a <span>Street</span></div>
-        <div class="mode-pill" id="modePill">👫 Together</div>
+        <div class="mode-pill" id="modePill"></div>
       </div>
       <div id="levelGrid" class="level-grid"></div>
       <div class="jar-row" id="selectJar"></div>
@@ -116,26 +101,32 @@
   <!-- Level intro -->
   <section id="screen-intro" class="screen hidden dim">
     <div class="card intro-card">
-      <div class="ribbon" id="introArea">🏡 Home Street</div>
-      <h1 id="introName">Level</h1>
-      <p class="goal" id="introGoal"></p>
+      <div class="intro-head">
+        <img id="introThumb" class="intro-thumb" alt="" />
+        <div class="intro-titles">
+          <div class="eyebrow" id="introArea"></div>
+          <h1 id="introName">Level</h1>
+          <p class="goal" id="introGoal"></p>
+        </div>
+      </div>
       <div class="needs" id="introNeeds"></div>
-      <ul class="tips" id="introTips"></ul>
-      <button class="btn big" id="introGo">Let's go! ▶</button>
+      <div class="tips" id="introTips"></div>
+      <button class="btn big primary" id="introGo"><i data-ic="play"></i>Let's go!</button>
     </div>
   </section>
 
   <!-- HUD -->
   <section id="hud" class="hidden">
     <div class="hud-top">
-      <div class="hud-level" id="hudLevel">1</div>
+      <div class="hud-level" id="hudLevel"><span class="n">1</span><span class="t">Level</span></div>
       <div class="sunset" title="Time until sunset (iftar)">
-        <div class="sky" id="hudSky"><div class="sun" id="hudSun">☀️</div></div>
-        <div class="moon">🌙</div>
+        <span class="sunset-ico sun-ico"><i data-ic="sun"></i></span>
+        <div class="sky" id="hudSky"><div class="sun" id="hudSun"></div></div>
+        <span class="sunset-ico moon-ico" id="hudMoon"><i data-ic="moon"></i></span>
       </div>
-      <div class="hud-count" id="hudCount">📦 0/0</div>
-      <button class="icon-btn" id="hudMute" aria-label="Sound">🔊</button>
-      <button class="icon-btn" id="pauseBtn" aria-label="Pause">⏸</button>
+      <div class="hud-count" id="hudCount"><i data-ic="gift"></i><b>0</b>/0</div>
+      <button class="icon-btn" id="hudMute" aria-label="Sound"><i data-ic="sound"></i></button>
+      <button class="icon-btn" id="pauseBtn" aria-label="Pause"><i data-ic="pause"></i></button>
     </div>
     <div class="hint-banner hidden" id="hintBanner"></div>
   </section>
@@ -144,44 +135,50 @@
   <div id="pads" class="hidden">
     <div class="pad left" data-set="0">
       <div class="stick"><div class="knob"></div></div>
-      <button class="act" aria-label="Grab">✋</button>
+      <button class="act" aria-label="Grab"><i data-ic="hand"></i></button>
       <div class="padname" id="padName0">Zaid</div>
     </div>
     <div class="pad right" data-set="1">
       <div class="stick"><div class="knob"></div></div>
-      <button class="act" aria-label="Grab">✋</button>
+      <button class="act" aria-label="Grab"><i data-ic="hand"></i></button>
       <div class="padname" id="padName1">Amina</div>
     </div>
   </div>
 
   <!-- Pause -->
   <section id="screen-pause" class="screen hidden dim">
-    <div class="card small-card">
-      <h2>Paused</h2>
-      <button class="btn big" id="resumeBtn">Resume ▶</button>
-      <button class="btn alt" id="restartBtn">↺ Start level again</button>
-      <button class="btn soft" id="pauseHowTo">❓ How to Play</button>
-      <button class="btn soft" id="quitBtn">🗺️ Choose level</button>
+    <div class="card small-card pause-card">
+      <div class="ribbon c-blue"><i data-ic="pause"></i>Paused</div>
+      <div class="tiles">
+        <button class="tile c-green wide" id="resumeBtn"><i data-ic="play"></i>Resume</button>
+        <button class="tile c-blue" id="restartBtn"><i data-ic="replay"></i>Restart</button>
+        <button class="tile c-gold" id="pauseHowTo"><i data-ic="question"></i>How to Play</button>
+        <button class="tile c-purple" id="quitBtn"><i data-ic="map"></i>Streets</button>
+        <button class="tile c-pink" id="pauseMute"><i data-ic="sound"></i>Sound</button>
+      </div>
     </div>
   </section>
 
   <!-- Level result -->
   <section id="screen-result" class="screen hidden dim">
     <div class="card result-card">
-      <h1 id="resTitle">MashaAllah!</h1>
-      <div id="resStars" class="stars"></div>
-      <p class="res-line" id="resText"></p>
+      <div class="result-head">
+        <img id="resDuo" class="duo-pic" alt="" />
+        <h1 id="resTitle">MashaAllah!</h1>
+        <div id="resStars" class="stars"></div>
+      </div>
+      <div class="stat-row" id="resStats"></div>
+      <div class="jar-row" id="resultJar"></div>
       <div class="reminder">
-        <div class="ribbon small">🌙 Remember</div>
+        <div class="eyebrow"><i data-ic="moon"></i>Remember</div>
         <blockquote id="remText"></blockquote>
         <div class="source" id="remSource"></div>
         <p class="meaning" id="remMeaning"></p>
       </div>
-      <div class="jar-row" id="resultJar"></div>
       <div class="res-actions">
-        <button class="btn big" id="resNext">Next street ▶</button>
-        <button class="btn alt" id="resReplay">↺ Play again</button>
-        <button class="btn soft" id="resLevels">🗺️ Levels</button>
+        <button class="btn big primary" id="resNext"><i data-ic="next"></i>Next street</button>
+        <button class="btn alt" id="resReplay"><i data-ic="replay"></i>Play again</button>
+        <button class="btn soft" id="resLevels"><i data-ic="map"></i>Streets</button>
       </div>
     </div>
   </section>
@@ -189,11 +186,17 @@
   <!-- Finale -->
   <section id="screen-finale" class="screen hidden dim">
     <div class="card finale-card">
-      <div class="logo">Eid <span>Mubarak!</span></div>
+      <div class="finale-head">
+        <img id="finaleDuo" class="duo-pic" alt="" />
+        <div class="logo">Eid <span>Mubarak!</span></div>
+      </div>
       <p class="goal">Zaid and Amina helped the whole neighbourhood this Ramadan. Every box, every drink of water and every smile was Sadaqah!</p>
       <div class="jar-row big" id="finaleJar"></div>
-      <p class="sub">“Help one another in goodness and piety.” — Qur'an 5:2</p>
-      <button class="btn big" id="finaleOk">🗺️ Back to the streets</button>
+      <div class="reminder small">
+        <blockquote>Help one another in goodness and piety.</blockquote>
+        <div class="source">Qur'an 5:2</div>
+      </div>
+      <button class="btn big primary" id="finaleOk"><i data-ic="map"></i>Back to the streets</button>
     </div>
   </section>
 

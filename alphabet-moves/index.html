@@ -9,8 +9,8 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔤</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet" />
-  <script type="module" crossorigin src="./assets/index-rsKmCO1H.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-CloOwq_l.css">
+  <script type="module" crossorigin src="./assets/index-jE66H4wM.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CPdQKgnU.css">
 </head>
 <body>
   <canvas id="scene"></canvas>
@@ -38,7 +38,7 @@
         <div class="label">Pick your player</div>
         <div id="avatarRow" class="avatar-row"></div>
       </div>
-      <button class="btn big" id="homePlay">Let's Move! ▶</button>
+      <button class="btn big pulse" id="homePlay">Let's Move! ▶</button>
       <div class="safety">⚠️ Make sure you have space around you — ask a grown-up to help!</div>
     </div>
   </section>
@@ -48,8 +48,8 @@
     <div class="card">
       <div class="ribbon">How do you want to play?</div>
       <div class="choices">
-        <button class="choice" id="modeCamera"><span class="ico">📷</span><b>Camera Moves</b><small>Your hands, face and body control the games. The best way to move!</small></button>
-        <button class="choice" id="modeNocam"><span class="ico">👆</span><b>Tap &amp; Keys</b><small>No camera needed. Play with buttons, keys or touch.</small></button>
+        <button class="choice cam" id="modeCamera"><span class="tag">⭐ Best way to play</span><span class="ico">📷</span><b>Camera Moves</b><small>Your hands, face and body control the games. The best way to move!</small></button>
+        <button class="choice tap" id="modeNocam"><span class="ico">👆</span><b>Tap &amp; Keys</b><small>No camera needed. Play with buttons, keys or touch.</small></button>
       </div>
       <div class="safety">⚠️ Clear some space, move furniture away, and ask a grown-up to watch.</div>
       <button class="btn alt" id="modeBack">◀ Back</button>
@@ -103,7 +103,7 @@
       <div class="hub-stats">
         <div class="stat"><span>🔥</span><b id="hubStreak">0</b><small>day streak</small></div>
         <div class="stat"><span>⭐</span><b id="hubStars">0</b><small>stars</small></div>
-        <button class="stat book-btn" id="bookBtn"><span>📒</span><b id="hubLetters">0</b><small>letters found</small></button>
+        <button class="stat book-btn" id="bookBtn"><span>📒</span><b id="hubLetters">0</b><small>letters found · open book</small><span class="mini-bar"><i id="hubLetterBar"></i></span></button>
       </div>
       <div id="gameGrid" class="game-cats"></div>
       <p class="streak-tip" id="hubTip"></p>
@@ -113,7 +113,7 @@
   <!-- Activity intro: hadith/verse card + how to play -->
   <section id="screen-intro" class="screen dim hidden">
     <div class="card intro-card">
-      <div class="intro-title"><span id="introIcon">✍️</span><h2 id="introName">Game</h2></div>
+      <div class="intro-title"><span class="badge-ico" id="introIcon">✍️</span><h2 id="introName">Game</h2></div>
       <div class="intro-tech" id="introTech"></div>
       <div class="content-card" id="introContent">
         <div class="kind" id="introKind">🌙 Hadith</div>
@@ -125,8 +125,7 @@
         <div class="howto-head"><b>How to play</b><span id="introMode" class="mode-tag"></span></div>
         <ul id="introHow"></ul>
       </div>
-      <button class="btn big" id="introStart">Start ▶</button>
-      <div class="row"><button class="btn alt" id="introBack">◀ Back</button></div>
+      <div class="row intro-actions"><button class="btn alt" id="introBack">◀ Back</button><button class="btn big" id="introStart">Start ▶</button></div>
     </div>
   </section>
 
@@ -192,6 +191,7 @@
     <div class="card book-card">
       <div class="ribbon">📒 My Letter Book</div>
       <p class="sub" id="bookSub"></p>
+      <div class="book-bar"><div id="bookBar"></div></div>
       <div id="bookGrid" class="book-grid"></div>
       <div class="row"><button class="btn alt" id="bookBack">◀ Back</button></div>
     </div>
@@ -200,6 +200,7 @@
   <!-- Results -->
   <section id="screen-result" class="screen dim hidden">
     <div class="card result-card">
+      <div class="res-badge"><span class="badge-ico" id="resIcon">✍️</span><small id="resGame"></small></div>
       <h1 id="resTitle">Great job!</h1>
       <div id="resStars" class="stars"></div>
       <ul id="resLines" class="res-lines"></ul>

@@ -8,12 +8,13 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏹</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet" />
-  <script type="module" crossorigin src="./assets/index-Dr0Z8gp1.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-HKZ7U0Hv.css">
+  <script type="module" crossorigin src="./assets/index-D7JMKVe4.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DgCpXyd9.css">
 </head>
 <body>
   <canvas id="scene"></canvas>
   <div id="floats"></div>
+  <div id="flash"></div>
 
   <!-- HUD -->
   <section id="hud" class="hidden">
@@ -39,8 +40,8 @@
       <div class="logo"><span class="l1">Archery</span> <span>of the Sunnah</span></div>
       <p class="tagline">Aim true at the Eid festival range!</p>
       <div class="pick" id="charPick">
-        <button class="char on" data-c="boy"><span>👦</span><b>Yusuf</b></button>
-        <button class="char" data-c="girl"><span>🧕</span><b>Maryam</b></button>
+        <button class="char on" data-c="boy"><img class="thumb hidden" alt="" /><span class="fb">👦</span><b>Yusuf</b></button>
+        <button class="char girl" data-c="girl"><img class="thumb hidden" alt="" /><span class="fb">🧕</span><b>Maryam</b></button>
       </div>
       <button class="btn big" id="playBtn">▶ Play</button>
       <div class="row">
@@ -57,56 +58,61 @@
   <section id="screen-how" class="screen dim hidden">
     <div class="card">
       <div class="ribbon blue">How to Play</div>
-      <div class="how-list">
-        <p>🖱️ <b>Aim:</b> move your mouse or finger — the bow follows.</p>
-        <p>🏹 <b>Draw:</b> press and hold. The power bar swings — time it!</p>
-        <p>✨ <b>Loose:</b> let go to shoot. Arrows arc with gravity.</p>
-        <p>🌬️ <b>Wind:</b> watch the windsock — it pushes your arrow sideways.</p>
-        <p>⭐ <b>Stars:</b> reach the score goal to pass the round and earn coins.</p>
-        <p>💰 <b>Coins:</b> buy new bows and upgrades in the Armory.</p>
-        <p>⌨️ <b>Keys:</b> arrows to aim, hold Space to draw.</p>
+      <div class="how-grid stagger">
+        <div class="step c-pink" data-step="aim"><div class="pic"><img class="thumb hidden" alt="" /><span class="fb">🎯</span><span class="num">1</span></div><b>Aim</b><small>Move your mouse or finger — the bow follows.</small></div>
+        <div class="step c-gold" data-step="draw"><div class="pic"><img class="thumb hidden" alt="" /><span class="fb">🏹</span><span class="num">2</span></div><b>Draw</b><small>Press and hold. The power bar swings — time it!</small></div>
+        <div class="step c-green" data-step="loose"><div class="pic"><img class="thumb hidden" alt="" /><span class="fb">✨</span><span class="num">3</span></div><b>Loose</b><small>Let go to shoot. Arrows arc with gravity.</small></div>
+        <div class="step c-blue" data-step="wind"><div class="pic"><img class="thumb hidden" alt="" /><span class="fb">🌬️</span><span class="num">4</span></div><b>Wind</b><small>Watch the windsock — it pushes your arrow sideways.</small></div>
+        <div class="step c-purple" data-step="stars"><div class="pic"><img class="thumb hidden" alt="" /><span class="fb">⭐</span><span class="num">5</span></div><b>Stars</b><small>Reach the score goal to pass the round and earn coins.</small></div>
+        <div class="step c-orange" data-step="coins"><div class="pic"><img class="thumb hidden" alt="" /><span class="fb">💰</span><span class="num">6</span></div><b>Coins</b><small>Buy new bows and upgrades in the Armory.</small></div>
       </div>
+      <p class="keys">⌨️ Keyboard: <kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> aim · hold <kbd>Space</kbd> to draw</p>
       <button class="btn big" id="howClose">Got it!</button>
     </div>
   </section>
 
   <!-- Armory -->
   <section id="screen-armory" class="screen dim hidden">
-    <div class="card up-card">
-      <div class="ribbon">🏹 Armory</div>
-      <p class="sub small">Spend your coins on better gear.</p>
-      <div id="bowList" class="bow-list"></div>
-      <div id="upList" class="up-list"></div>
+    <div class="card up-card armory-card">
+      <div class="ribbon gold">🏹 Armory</div>
+      <p class="sub small">Spend your coins on better gear. <span class="wallet"><span class="coin-ico"></span><b id="armoryCoins">0</b></span></p>
+      <h3 class="sec">Bows</h3>
+      <div id="bowList" class="bow-list stagger"></div>
+      <h3 class="sec">Upgrades</h3>
+      <div id="upList" class="up-list stagger"></div>
       <button class="btn big" id="armoryClose">Done</button>
     </div>
   </section>
 
   <!-- Pause menu -->
   <section id="screen-menu" class="screen dim hidden">
-    <div class="card small-card">
-      <h2>Paused</h2>
+    <div class="card small-card pause-card">
+      <div class="ribbon purple">⏸ Paused</div>
       <p class="sub" id="stats"></p>
       <button class="btn big" id="menuResume">▶ Resume</button>
-      <button class="btn alt" id="restartBtn">↻ Restart Round</button>
-      <button class="btn alt" id="armoryBtn2">🏹 Armory</button>
-      <button class="btn alt" id="howBtn2">❓ How to Play</button>
-      <button class="btn alt" id="homeBtn">🏠 Title Screen</button>
+      <div class="tiles stagger">
+        <button class="tile c-blue" id="restartBtn"><span>↻</span><b>Restart</b></button>
+        <button class="tile c-gold" id="armoryBtn2"><span>🏹</span><b>Armory</b></button>
+        <button class="tile c-green" id="howBtn2"><span>❓</span><b>How to</b></button>
+        <button class="tile c-pink" id="homeBtn"><span>🏠</span><b>Home</b></button>
+      </div>
     </div>
   </section>
 
   <!-- Round results -->
   <section id="screen-results" class="screen dim hidden">
-    <div class="card small-card">
+    <div class="card small-card results-card">
+      <div id="confetti" class="confetti"></div>
       <div class="big-ico" id="resIcon">🎯</div>
       <div class="ribbon" id="resTitle">Round 1 complete!</div>
       <div id="resStars" class="stars"></div>
-      <p class="sub">Score: <b id="resScore">0</b> <span id="resBest" class="best-note"></span></p>
+      <div class="score-box"><small>Score</small><b id="resScore">0</b><span id="resBest" class="best-note"></span></div>
       <p class="sub coins-earned"><span class="coin-ico"></span> <b id="resCoins">+0</b> coins earned</p>
       <button class="btn big" id="nextBtn">Next Round ▶</button>
       <button class="btn alt" id="retryBtn">↻ Try Again</button>
-      <div class="row">
-        <button class="btn alt" id="armoryBtn3">🏹 Armory</button>
-        <button class="btn alt" id="homeBtn2">🏠 Home</button>
+      <div class="tiles tiles-2 stagger">
+        <button class="tile c-gold" id="armoryBtn3"><span>🏹</span><b>Armory</b></button>
+        <button class="tile c-pink" id="homeBtn2"><span>🏠</span><b>Home</b></button>
       </div>
     </div>
   </section>

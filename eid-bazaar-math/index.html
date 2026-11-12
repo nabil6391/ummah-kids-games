@@ -8,8 +8,8 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet" />
-  <script type="module" crossorigin src="./assets/index-BmqPaz5N.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-AZSteQFF.css">
+  <script type="module" crossorigin src="./assets/index-2Bd0Cp8_.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BKsBL8Kx.css">
 </head>
 <body>
   <canvas id="scene"></canvas>
@@ -25,12 +25,17 @@
   <!-- Title -->
   <section id="screen-title" class="screen low">
     <div class="card title-card">
-      <div class="logo"><span class="moon">🌙</span> Eid Bazaar <span>Math</span></div>
-      <p class="tagline">Help Amina and Zaid get ready for Eid — count, add, and share!</p>
-      <button class="btn big" id="titlePlay">Story ▶</button>
-      <div class="row">
-        <button class="btn alt" id="titlePractice">🎯 Practice</button>
-        <button class="btn pink" id="titleParents">For grown-ups</button>
+      <div class="title-hero">
+        <img id="titleKids" class="kids-pic" alt="Amina and Zaid" width="150" height="150">
+        <div>
+          <div class="logo"><span class="moon">🌙</span> Eid Bazaar <span>Math</span></div>
+          <p class="tagline">Help Amina and Zaid get ready for Eid — count, add, and share!</p>
+        </div>
+      </div>
+      <div class="menu">
+        <button class="btn big menu-btn pop-in" style="--i:0" id="titlePlay"><span class="mi">📖</span><span class="mt">Story<small>6 chapters to Eid</small></span></button>
+        <button class="btn alt menu-btn pop-in" style="--i:1" id="titlePractice"><span class="mi">🎯</span><span class="mt">Practice<small>pick a skill</small></span></button>
+        <button class="btn pink menu-btn pop-in" style="--i:2" id="titleParents"><span class="mi">👨‍👩‍👧</span><span class="mt">For grown-ups<small>about this game</small></span></button>
       </div>
     </div>
   </section>
@@ -38,10 +43,10 @@
   <!-- Chapter map -->
   <section id="screen-map" class="screen">
     <div class="card map-card">
-      <div class="logo small">Countdown to <span>Eid</span></div>
+      <div class="logo small"><span class="moon">🌙</span> Countdown to <span>Eid</span></div>
       <div id="chapterGrid" class="chapter-grid"></div>
       <div class="sticker-book">
-        <div class="sb-title">My Stickers</div>
+        <div class="sb-title">⭐ My Stickers <span id="stickerCount" class="pill">0 / 7</span></div>
         <div id="stickerRow" class="sticker-row"></div>
       </div>
       <div class="row">
@@ -108,6 +113,7 @@
     <div class="card complete-card">
       <h1 id="completeTitle">Chapter complete!</h1>
       <div id="completeStars" class="stars"></div>
+      <p id="completeStarsText" class="stars-text"></p>
       <div class="sticker-reveal"><div id="completeSticker" class="sticker big">🌴</div><div id="completeStickerName" class="sticker-name">Date Palm sticker!</div></div>
       <div class="value-card">
         <div id="completeKind" class="ribbon">🌙 Hadith</div>
@@ -128,7 +134,7 @@
       <div class="logo small">🎯 <span>Practice</span></div>
       <p class="sub">Pick what you want to practise. No pressure — play as long as you like!</p>
       <div id="practiceGrid" class="practice-grid"></div>
-      <p class="hint">Practice stars: <b id="practiceStars">0</b> ⭐</p>
+      <div class="pstars-pill">⭐ Practice stars: <b id="practiceStars">0</b></div>
     </div>
   </section>
 
@@ -155,19 +161,26 @@
   <!-- Parents -->
   <section id="screen-parents" class="screen dim">
     <div class="card parents-card">
-      <h2>For grown-ups</h2>
-      <p>Eid Bazaar Math practises <b>addition</b> for ages 5–8: sums to 5, to 10 and to 20, adding tens, and two-digit sums without regrouping.</p>
-      <p>Children count real objects (tap to count), then pick or type the answer. Wrong answers are never punished — the game counts together with the child and lets them try again. Helpers: “Count with me”, a number line, and a ten frame / tens-and-ones chart.</p>
-      <p>Keyboard: number keys to type, <b>Enter</b> to check / continue, <b>Backspace</b> to delete.</p>
-      <p class="hint">Progress is saved on this device only.</p>
+      <div class="logo small">👨‍👩‍👧 <span>For grown-ups</span></div>
+      <p class="sub">Eid Bazaar Math practises <b>addition</b> for ages 5–8 inside an Eid story.</p>
+      <ul class="info-rows">
+        <li class="pop-in" style="--i:0"><span class="ri c-green">➕</span><div><b>Skills</b><br>Sums to 5, to 10 and to 20 · adding tens · two-digit sums without regrouping.</div></li>
+        <li class="pop-in" style="--i:1"><span class="ri c-blue">👆</span><div><b>How it plays</b><br>Children tap real objects to count, then pick or type the answer.</div></li>
+        <li class="pop-in" style="--i:2"><span class="ri c-gold">🤗</span><div><b>Gentle</b><br>Wrong answers are never punished — the game counts together with the child and lets them try again.</div></li>
+        <li class="pop-in" style="--i:3"><span class="ri c-purple">🧰</span><div><b>Helpers</b><br>“Count with me”, a number line, and a ten frame / tens-and-ones chart.</div></li>
+        <li class="pop-in" style="--i:4"><span class="ri c-pink">⌨️</span><div><b>Keyboard</b><br>Number keys to type · <b>Enter</b> to check or continue · <b>Backspace</b> to delete.</div></li>
+        <li class="pop-in" style="--i:5"><span class="ri c-grey">🔒</span><div><b>Privacy</b><br>Progress is saved on this device only. No accounts, no ads, no tracking.</div></li>
+      </ul>
       <div class="row">
-        <button class="btn pink" id="resetBtn">Reset progress</button>
-        <button class="btn" id="parentsBack">Back</button>
+        <button class="btn pink" id="resetBtn">🗑️ Reset progress</button>
+        <button class="btn" id="parentsBack">◀ Back</button>
       </div>
     </div>
   </section>
 
   <div id="toast" class="toast hidden"></div>
+  <div id="flash" class="flash"></div>
+  <div id="confetti" class="confetti-dom"></div>
 <script src="../site-extras.js" defer></script>
 </body>
 </html>

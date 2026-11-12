@@ -8,8 +8,8 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥕</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet" />
-  <script type="module" crossorigin src="./assets/index-BuQWEQ6X.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-AcCO4VIx.css">
+  <script type="module" crossorigin src="./assets/index-BVcJdy1Y.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-nVd7mxNb.css">
 </head>
 <body>
   <canvas id="scene"></canvas>
@@ -32,18 +32,19 @@
         <b>“Eat of what is on the earth, lawful and good.”</b>
         <small>Quran 2:168</small>
       </div>
-      <button class="btn big" id="titlePlay">Play ▶</button>
-      <div class="row">
-        <button class="btn alt" id="titleStickers">📒 Sticker Book</button>
-        <button class="btn soft" id="titleGrown">👪 Grown-ups</button>
+      <button class="btn big" id="titlePlay">▶ Play</button>
+      <div class="tiles tiles-2">
+        <button class="tile t-blue stag" id="titleStickers"><span class="ic">📒</span><span>Sticker Book</span></button>
+        <button class="tile t-plum stag" id="titleGrown"><span class="ic">👪</span><span>Grown-ups</span></button>
       </div>
     </div>
   </section>
 
   <!-- Level map -->
   <section id="screen-map" class="screen">
-    <div class="card map-card">
-      <h2>Who is hungry? 🌾</h2>
+    <div class="card map-card accent-orange">
+      <div class="badge badge-orange">🌾 Farm Map</div>
+      <h2>Who is hungry?</h2>
       <p class="sub" id="mapSub">Tap a friend to feed them!</p>
       <div class="map-grid" id="mapGrid"></div>
       <div class="row">
@@ -55,7 +56,7 @@
 
   <!-- Level intro -->
   <section id="screen-intro" class="screen dim">
-    <div class="card intro-card">
+    <div class="card intro-card accent-pink">
       <div class="level-badge" id="introLevel">Level 1</div>
       <div class="intro-head">
         <img id="introImg" class="portrait" alt="" />
@@ -65,7 +66,9 @@
         </div>
       </div>
       <div class="how">
-        <span>👆 Drag or tap food</span><span>😋 to the mouth</span><span>✅ Good food only!</span>
+        <div class="how-step t-orange stag"><span class="n">1</span><img id="howFood" alt="" /><div>👆 Drag or tap food</div></div>
+        <div class="how-step t-green stag"><span class="n">2</span><img id="howAnimal" alt="" /><div>😋 To the mouth</div></div>
+        <div class="how-step t-pink stag"><span class="n">3</span><span class="no"><img id="howJunk" alt="" /></span><div>Good food only!</div></div>
       </div>
       <div class="tip">
         <div class="ribbon">🌙 <span id="tipTitle">Tayyib Tip</span></div>
@@ -91,40 +94,46 @@
 
   <!-- Pause -->
   <section id="screen-pause" class="screen dim">
-    <div class="card small-card">
-      <h2>Paused</h2>
-      <button class="btn big" id="resumeBtn">Keep feeding ▶</button>
-      <div class="row">
-        <button class="btn alt" id="pauseMap">🗺️ Map</button>
-        <button class="btn alt" id="pauseHome">🏠 Home</button>
+    <div class="card pause-card accent-teal">
+      <div class="badge badge-teal">⏸ Paused</div>
+      <img id="pauseImg" class="portrait small" alt="" />
+      <h2 id="pauseTitle">Nibbles is waiting!</h2>
+      <button class="btn big" id="resumeBtn">▶ Keep feeding</button>
+      <div class="tiles tiles-3">
+        <button class="tile t-orange stag" id="pauseMap"><span class="ic">🗺️</span><span>Map</span></button>
+        <button class="tile t-blue stag" id="pauseStickers"><span class="ic">📒</span><span>Stickers</span></button>
+        <button class="tile t-plum stag" id="pauseHome"><span class="ic">🏠</span><span>Home</span></button>
       </div>
     </div>
   </section>
 
   <!-- Result -->
   <section id="screen-result" class="screen dim">
-    <div class="card result-card">
+    <div class="card result-card accent-gold">
+      <div id="confetti" class="confetti" aria-hidden="true"></div>
       <h1 id="resTitle">Alhamdulillah!</h1>
       <p id="resText" class="goal"></p>
       <div id="resStars" class="stars"></div>
+      <div id="resCount" class="star-count"></div>
       <div id="resSticker" class="new-sticker hidden">
         <div class="sticker big-sticker"><img id="resStickerImg" alt="" /></div>
         <div class="new-label">New sticker! 🎉</div>
       </div>
       <div class="earn" id="resEarn"></div>
       <button class="btn big" id="resNext">Next friend ▶</button>
-      <div class="row">
-        <button class="btn alt" id="resAgain">🔁 Again</button>
-        <button class="btn alt" id="resMap">🗺️ Map</button>
-        <button class="btn alt" id="resStickers">📒 Stickers</button>
+      <div class="tiles tiles-3">
+        <button class="tile t-green stag" id="resAgain"><span class="ic">🔁</span><span>Again</span></button>
+        <button class="tile t-orange stag" id="resMap"><span class="ic">🗺️</span><span>Map</span></button>
+        <button class="tile t-blue stag" id="resStickers"><span class="ic">📒</span><span>Stickers</span></button>
       </div>
     </div>
   </section>
 
   <!-- Sticker book -->
   <section id="screen-stickers" class="screen dim">
-    <div class="card book-card">
-      <h2>📒 My Farm Sticker Book</h2>
+    <div class="card book-card accent-blue">
+      <div class="badge badge-blue">📒 Sticker Book</div>
+      <h2>My Farm Friends</h2>
       <p class="sub" id="bookSub"></p>
       <div class="book-grid" id="bookGrid"></div>
       <button class="btn big" id="bookClose">Done ✔</button>
@@ -133,17 +142,21 @@
 
   <!-- Grown-ups -->
   <section id="screen-grown" class="screen dim">
-    <div class="card grown-card">
-      <h2>👪 For Grown-ups</h2>
-      <p class="sub">Tayyib Treats teaches children to choose wholesome food and to be kind to animals.
-        Children drag (or tap) food to each animal. Good food fills the tummy meter; junk food gives a gentle tummy-ache and a hint.
-        There is no way to fail. Read-aloud uses your browser's built-in voice.</p>
-      <h3>Islamic content & sources</h3>
+    <div class="card grown-card accent-plum">
+      <div class="badge badge-plum">👪 For Grown-ups</div>
+      <h2>What your child learns</h2>
+      <div class="feat">
+        <div class="feat-card t-green stag"><span class="ic">🥕</span><b>Tayyib food</b><span>Choose wholesome food; junk gives a gentle tummy-ache and a hint.</span></div>
+        <div class="feat-card t-orange stag"><span class="ic">👆</span><b>Drag or tap</b><span>Food to each animal's mouth. Simple for small hands.</span></div>
+        <div class="feat-card t-blue stag"><span class="ic">💛</span><b>No failing</b><span>Every level ends happily. Stars reward careful choices.</span></div>
+        <div class="feat-card t-plum stag"><span class="ic">🔈</span><b>Read aloud</b><span>Uses your browser's built-in voice. Toggle at top right.</span></div>
+      </div>
+      <h3>📖 Islamic content &amp; sources</h3>
       <ul class="sources" id="sourceList"></ul>
       <p class="sub small">Short English meanings are simplified for children. Please check with a local scholar if unsure.</p>
-      <div class="row">
-        <button class="btn soft" id="resetBtn">Reset progress</button>
-        <button class="btn big" id="grownClose">Done ✔</button>
+      <div class="tiles tiles-2">
+        <button class="tile t-grey stag" id="resetBtn"><span class="ic">🧹</span><span>Reset progress</span></button>
+        <button class="tile t-green stag" id="grownClose"><span class="ic">✔</span><span>Done</span></button>
       </div>
     </div>
   </section>

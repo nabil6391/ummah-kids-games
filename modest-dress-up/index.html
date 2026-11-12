@@ -8,8 +8,8 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧕</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet" />
-  <script type="module" crossorigin src="./assets/index-B5tEDvA-.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-Baj_-duV.css">
+  <script type="module" crossorigin src="./assets/index-BsCRIwRP.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-B1AIH1Ju.css">
 </head>
 <body>
   <canvas id="scene"></canvas>
@@ -27,12 +27,12 @@
     <div class="card title-card">
       <div class="logo">Modest <span>Style</span> Studio</div>
       <div class="tagline">Dress up with Amina 🧕✨</div>
-      <div class="menu">
-        <button class="btn big" id="goChallenges">⭐ Challenges</button>
-        <button class="btn big pink" id="goStudio">🎨 Design Studio</button>
-        <div class="row">
-          <button class="btn alt" id="goLookbook">📖 Lookbook</button>
-          <button class="btn alt" id="goSettings">⚙️ Settings</button>
+      <div class="menu tiles">
+        <button class="tile pop-in" id="goChallenges" style="--c:#f2b53a;--cd:#c98a14;--i:0"><span class="t-ico">⭐</span><span class="t-txt"><b>Challenges</b><small>Dress Amina for 7 occasions</small></span></button>
+        <button class="tile pop-in" id="goStudio" style="--c:#ff6fa8;--cd:#d94a86;--i:1"><span class="t-ico">🎨</span><span class="t-txt"><b>Design Studio</b><small>Free play, any look you like</small></span></button>
+        <div class="row tiles-row">
+          <button class="tile sm pop-in" id="goLookbook" style="--c:#9b7bea;--cd:#7556c9;--i:2"><span class="t-ico">📖</span><span class="t-txt"><b>Lookbook</b></span></button>
+          <button class="tile sm pop-in" id="goSettings" style="--c:#2ab3a6;--cd:#1e8c82;--i:3"><span class="t-ico">⚙️</span><span class="t-txt"><b>Settings</b></span></button>
         </div>
       </div>
       <div class="reminder small">
@@ -87,10 +87,12 @@
 
   <!-- Challenge result -->
   <section id="screen-result" class="screen hidden dim">
+    <div class="confetti" id="confetti" aria-hidden="true"></div>
     <div class="card result-card">
       <div class="ribbon" id="resRibbon">Eid Morning</div>
       <h1 id="resTitle">Masha'Allah!</h1>
       <div class="stars" id="resStars"></div>
+      <div class="tally" id="resTally"><span>⭐</span><b id="resTallyNum">0</b><small id="resTallyNext"></small></div>
       <ul class="goal-list" id="resGoals"></ul>
       <div class="reminder">
         <div class="rem-head">🌙 A little reminder</div>
