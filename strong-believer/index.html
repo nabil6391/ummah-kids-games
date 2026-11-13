@@ -9,8 +9,8 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2316a3a0' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><path d='M6 4c6 2 10 6 10 12 0 1.5-.3 3-.8 4'/><path d='M6 4l9.2 16'/><path d='M4 20L18 6'/><path d='M15 6h3v3'/></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet" />
-  <script type="module" crossorigin src="./assets/index-BrJWxYaN.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-UlYPkNZ7.css">
+  <script type="module" crossorigin src="./assets/index-DoLd17gX.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BLsHOVBP.css">
 </head>
 <body>
   <canvas id="scene"></canvas>
@@ -118,6 +118,7 @@
         <div class="stat c-gold"><i data-ic="star"></i><b id="hubStrength">0</b><small>strength stars</small></div>
         <div class="stat c-green"><i data-ic="check"></i><b id="hubToday">0</b><small>done today</small></div>
       </div>
+      <div class="week" id="hubWeek"></div>
       <div id="activityGrid" class="activity-grid"></div>
       <p class="streak-tip" id="hubTip"></p>
     </div>
@@ -135,6 +136,7 @@
         </div>
       </div>
       <div class="intro-body">
+        <div class="goals hidden" id="introGoals"></div>
         <div class="content-card">
           <div class="kind" id="introKind"><i data-ic="moon"></i><span>Hadith</span></div>
           <blockquote id="introText"></blockquote>

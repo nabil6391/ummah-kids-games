@@ -8,9 +8,9 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕌</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet" />
-  <script type="module" crossorigin src="./assets/index-CdTRpaJj.js"></script>
+  <script type="module" crossorigin src="./assets/index-CW-3DRzR.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/three-BeMxOyho.js">
-  <link rel="stylesheet" crossorigin href="./assets/index-CZbeikV5.css">
+  <link rel="stylesheet" crossorigin href="./assets/index-DQncV-yl.css">
 </head>
 <body>
   <canvas id="scene"></canvas>
@@ -130,6 +130,7 @@
     <div class="card intro-card">
       <div class="chapter hidden" id="introChapter"></div>
       <div class="ribbon" id="introWhere">Madinah · 622</div>
+      <div class="time-hop hidden" id="introHop"></div>
       <div class="gen-chip hidden" id="introGen">🗺️ Auto-built from map data</div>
       <h2 id="introName">Masjid</h2>
       <div class="dialog" id="introDialog"></div>
@@ -156,8 +157,8 @@
   <!-- Architect's question -->
   <section id="screen-quiz" class="screen dim hidden">
     <div class="card small-card quiz-card">
-      <div class="big-ico">🏛️</div>
-      <div class="ribbon">Architect's Question</div>
+      <div class="big-ico" id="quizIco">🏛️</div>
+      <div class="ribbon" id="quizRibbon">Architect's Question</div>
       <p class="quiz-q" id="quizQ"></p>
       <div class="quiz-opts" id="quizOpts"></div>
       <p class="sub small hidden" id="quizHint"></p>
